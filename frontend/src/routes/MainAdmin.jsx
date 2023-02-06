@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
-import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate} from 'react-router-dom'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
-
-
 const MainPage = () => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
