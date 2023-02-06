@@ -7,7 +7,7 @@ import SignUpPage from './routes/SignUpPage'
 const App = () => (
   <Routes>
     <Route path="/" element={<LoginPage />} />
-    <Route path="/chat" element={<MainPage />} />
+    <Route path="/vynils" element={<MainPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/sign-up" element={<SignUpPage />} />
   </Routes>

@@ -18,8 +18,7 @@ app.use(cors())
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to Small Talk API',
-    status: 'OK',
+    message: 'Welcome to Databeats!!'
   })
 })
 
@@ -27,5 +26,8 @@ app.use(express.json())
 
 const usersRouter = require('./routes/users')
 app.use('/users', usersRouter)
+
+const vynilsRouter = require('./routes/vynils')
+app.use('/vynils', vynilsRouter)
 
 app.listen(4000, () => console.log('servidor corriendo en el puerto 4000'))

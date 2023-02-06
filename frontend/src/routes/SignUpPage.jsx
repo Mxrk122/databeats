@@ -20,6 +20,7 @@ const SignUpPage = () => {
         lastName,
         password,
       }
+      // Para editar es PATCH
       const response = await fetch('http://localhost:4000/users', {
         method: 'POST',
         headers: {
@@ -31,7 +32,7 @@ const SignUpPage = () => {
       console.log(data)
       navigate('/login')
     } else {
-      console.log('Passwords do not match')
+      console.log('contraseñas no coinciden')
     }
   }
 
