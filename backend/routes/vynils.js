@@ -1,25 +1,25 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user')
+const Vynil = require('../models/vynil')
 
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find()
-    res.json(users)
+    const vynils = await Vynil.find()
+    res.json(vynils)
   } catch (error) {
     res.send({ message: error.message })
   }
 })
 
 router.post('/', async (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-    favourites: [],
+  const vynil = new Vynil({
+    name: req.body.name,
+    artist: req.body.artist,
+    year: req.body.year
   })
   try {
-    const newUser = await user.save()
-    res.status(201).json(newUser)
+    const newVynil = await vynil.save()
+    res.status(201).json(newVynil)
   } catch (error) {
     res.status(400).json({ message: error.message })
   }

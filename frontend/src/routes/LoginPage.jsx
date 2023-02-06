@@ -23,7 +23,7 @@ const LoginPage = () => {
     const user = users.find((user) => user.username === username)
     if (user) {
       if (user.password === password) {
-        navigate('/chat')
+        navigate('/vynils')
       } else {
         console.log('Wrong password')
       }

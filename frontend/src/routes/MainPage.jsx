@@ -6,22 +6,18 @@ import { Link, useNavigate} from 'react-router-dom'
 const MainPage = () => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
-    const vinilos = [
-        {
-            "id": 1,
-            "nombre": "Abbey Road",
-            "artista": "The Beatles",
-            "precio": 20,
-            "imagen": 'https://revistaastronauta.com/wp-content/uploads/2022/04/1200px-7C396001-AA89-4EF5-8732-342FE9276B38.jpg'
-        },
-        {
-            "id": 2,
-            "nombre": "The Dark Side of the Moon",
-            "artista": "Pink Floyd",
-            "precio": 20,
-            "imagen": 'https://www.audiovenue.uk/wp-content/uploads/2021/07/pink-floyd-dark-side.jpg'
+    const [vynils, setVynils] = useState([])
+
+    useEffect(() => {
+        const getVynils = async () => {
+          const response = await fetch('http://localhost:4000/vynils')
+          const data = await response.json()
+          setVynils(data)
         }
-    ]
+        getVynils()
+    }, [])
+
+    console.log(vynils)
 
     return (
         <main>
@@ -30,12 +26,12 @@ const MainPage = () => {
             <h1>¡Bienvenido a Data Beats!</h1>
             <div className = "tablero">
                 {
-                vinilos.map((vinilo) => (
-                    <div className = "vinilo">
-                        <img src = {vinilo.imagen} alt = {vinilo.nombre}/>
-                        <h2>{vinilo.nombre}</h2>
-                        <h3>{vinilo.artista}</h3>
-                        <h4>{vinilo.precio}€</h4>
+                vynils.map((vinilo) => (
+                    <div key = { vinilo._id} className = "vinilo">
+                        <img src = {vinilo.img} alt = {vinilo.name}/>
+                        <h2>{vinilo.name}</h2>
+                        <h3>{vinilo.artist}</h3>
+                        <h4>{vinilo.year}</h4>
                     </div>
                 ))}
             </div>
