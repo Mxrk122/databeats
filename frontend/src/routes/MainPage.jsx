@@ -1,8 +1,6 @@
 import React from 'react'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
-
-
 const MainPage = () => {
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
