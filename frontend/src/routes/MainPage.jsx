@@ -15,6 +15,10 @@ const MainPage = () => {
         getVynils()
     }, [])
 
+    const ViewVinil = () => {
+        navigate('/viewVinil')
+    }
+
     console.log(vynils)
 
     return (
@@ -27,7 +31,7 @@ const MainPage = () => {
                 vynils.map((vinilo) => (
                     <div key = { vinilo._id} className = "vinilo">
                         <img src = {vinilo.img} alt = {vinilo.name}/>
-                        <h2>{vinilo.name}</h2>
+                        <button onClick={ViewVinil}>{vinilo.nombre}</button>
                         <h3>{vinilo.artist}</h3>
                         <h4>{vinilo.year}</h4>
                     </div>
