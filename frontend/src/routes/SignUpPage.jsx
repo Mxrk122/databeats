@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
-import SmallTalkLogo from '../assets/images/small-talk-logo.png'
-import '../styles/sign-up-page.sass'
+import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 
 const SignUpPage = () => {
   const [username, setUsername] = useState('')
@@ -40,8 +39,8 @@ const SignUpPage = () => {
     <main>
       <div className="sign-up-container">
         <div className="sign-up-icon-container">
-          <img src={SmallTalkLogo} alt="Small Talk Logo" />
-          <h1>Sign Up to Small Talk</h1>
+          <img src= {DataBeatsLogo} alt="Data Beats Logo" />
+          <h1>¡Registrate para visualizar nuestra tienda!</h1>
         </div>
         <div className="sign-up-form">
           <input
@@ -52,32 +51,32 @@ const SignUpPage = () => {
           />
           <input
             type="text"
-            id="first-name"
-            placeholder="First Name"
+            id="Nombre"
+            placeholder="Nombre"
             onChange={(event) => setFirstName(event.target.value)}
           />
           <input
             type="text"
-            id="last-name"
-            placeholder="Last Name"
+            id="Apellidos"
+            placeholder="Apellidos"
             onChange={(event) => setLastName(event.target.value)}
           />
           <input
             type="password"
-            id="password"
-            placeholder="Password"
+            id="Contraseña"
+            placeholder="Contraseña"
             onChange={(event) => setPassword(event.target.value)}
           />
           <input
             type="password"
-            id="confirm-password"
-            placeholder="Confirm Password"
+            id="Confirmar-contraseña"
+            placeholder="Confirmar contrseña"
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
         </div>
-        <button onClick={handleSignUp}>Sign Up</button>
+        <button onClick={handleSignUp}>Registrarse</button>
         <p>
-          If you have an account, you can <Link to="/login">Log In</Link>
+          Si ya posees una cuenta, también puedes <Link to="/login">Iniciar Sesión</Link> aquí.
         </p>
       </div>
     </main>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import SmallTalkLogo from '../assets/images/small-talk-logo.png'
-import '../styles/login-page.sass'
+import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 
 const LoginPage = () => {
   const [users, setUsers] = useState()
@@ -37,8 +36,8 @@ const LoginPage = () => {
     <main>
       <div className="login-container">
         <div className="login-icon-container">
-          <img src={SmallTalkLogo} alt="Small Talk Logo" />
-          <h1>Welcome to Small Talk</h1>
+          <img src={DataBeatsLogo} alt="Data Beats Logo" />
+          <h1>¡Bienvenido a Data Beats!</h1>
         </div>
         <div className="login-form">
           <input
@@ -54,9 +53,9 @@ const LoginPage = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button onClick={handleLogin}>Log In</button>
+        <button onClick={handleLogin}>Iniciar Sesión</button>
         <p>
-          Or you might want to <Link to="/sign-up">Sign Up</Link> instead
+          ¿Aún no posees cuenta? <Link to="/sign-up">Registrate</Link> aquí.
         </p>
       </div>
     </main>
