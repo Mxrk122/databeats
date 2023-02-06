@@ -29,6 +29,10 @@ const MainAdminPage = () => {
         navigate('/create')
     }
 
+    const ViewVinil = () => {
+        navigate('/viewVinil')
+    }
+
 
     return (
         <main>
@@ -40,7 +44,7 @@ const MainAdminPage = () => {
                 vinilos.map((vinilo) => (
                     <div className = "vinilo">
                         <img src = {vinilo.imagen} alt = {vinilo.nombre}/>
-                        <h2>{vinilo.nombre}</h2>
+                        <button onClick={ViewVinil}>{vinilo.nombre}</button>
                         <h3>{vinilo.artista}</h3>
                         <h4>{vinilo.precio}€</h4>
                     </div>

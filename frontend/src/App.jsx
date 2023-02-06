@@ -4,6 +4,7 @@ import MainPage from './routes/MainPage'
 import LoginPage from './routes/LoginPage'
 import SignUpPage from './routes/SignUpPage'
 import VinilCreate from './routes/VinilCreate'
+import VinilInfo from './routes/VinilInfo'
 
 const App = () => (
   <Routes>
@@ -12,6 +13,7 @@ const App = () => (
     <Route path="/login" element={<LoginPage />} />
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
+    <Route path="/viewVinil" element={<VinilInfo />} />
   </Routes>
 )
 
