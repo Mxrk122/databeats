@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
