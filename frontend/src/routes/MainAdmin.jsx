@@ -1,9 +1,11 @@
+import React, { useState } from 'react'
+import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
-const MainPage = () => {
+const MainAdminPage = () => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
@@ -23,6 +25,11 @@ const MainPage = () => {
         }
     ]
 
+    const GoVinil = () => {
+        navigate('/create')
+    }
+
+
     return (
         <main>
         <div className="vinilos-container">
@@ -40,10 +47,11 @@ const MainPage = () => {
                 ))}
             </div>
             <p>Estos son los vinilos que tenemos en nuestra tienda</p>
+            <button onClick={GoVinil}>Crear vinilo</button>
             </div>
         </div>
         </main>
     )
 }
 
-export default MainPage
+export default MainAdminPage
