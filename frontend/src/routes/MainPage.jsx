@@ -25,10 +25,15 @@ const MainPage = ({viewVinil}) => {
 
     return (
         <main>
+        <header>
+        {(user.admin) ? <Link to="/create"><h1>Añadir un vinilo</h1></Link> : null}
+        <button>
+            <Link to="/user">Mi usuario</Link>
+        </button>
+        </header>
         <div className="vinilos-container">
             <div className="vinilos">
             <h1>¡Bienvenido a Data Beats!</h1>
-            {(user.admin) ? <Link to="/create"><h1>Añadir un vinilo</h1></Link> : null}
             <div className = "tablero">
                 {vynils.map((vinilo) => (
                     <div key = {vinilo._id} className = "vinilo" onClick={() => handleChoose(vinilo)} >
