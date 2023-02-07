@@ -12,6 +12,23 @@ const vynilInfo = ({selectedVynil}) => {
 
     const { user } = React.useContext(UserContext)
 
+    const handleFavorite = async (event) => {
+        event.preventDefault()
+        const vynil = selectedVynil
+
+        console.log('http://localhost:4000/users/favorite/' + user._id + '/' + vynil._id)
+        
+        // Para editar es PATCH
+        const response = await fetch('http://localhost:4000/users/favorite/' + user._id + '/' + vynil._id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(vynil),
+        })
+        const data = await response.json()
+      }
+
     return (
         <main>
         <div className='button-back'>
@@ -31,7 +48,7 @@ const vynilInfo = ({selectedVynil}) => {
             </div>
         </div>
         <div className='button-like'>
-            <button>Me gusta</button>
+            <button onClick={handleFavorite}>Me gusta</button>
         </div>
         </main>
     )

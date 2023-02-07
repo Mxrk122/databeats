@@ -28,7 +28,7 @@ const App = () => {
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
     <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} />} />
-    <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} />} />
+    <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
   </Routes>)
 }
 

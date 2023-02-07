@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   password: String,
+  favorites: [{
+    type: String,
+    unique: true
+  }],
   admin: {
     type: Boolean,
     default: false
