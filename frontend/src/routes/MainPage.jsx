@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
+import { UserContext } from '../context/userContextProvider' 
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
-const MainPage = () => {
+const MainPage = ({viewVinil}) => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
     const [vynils, setVynils] = useState([])
+
+    const { user } = React.useContext(UserContext)
 
     useEffect(() => {
         const getVynils = async () => {
@@ -15,11 +18,10 @@ const MainPage = () => {
         getVynils()
     }, [])
 
-    const ViewVinil = () => {
-        navigate('/viewVinil')
+    const handleChoose = (vynil) => {
+        viewVinil(vynil)
+        navigate("../viewVynil")
     }
-
-    console.log(vynils)
 
     return (
         <main>
@@ -27,11 +29,10 @@ const MainPage = () => {
             <div className="vinilos">
             <h1>¡Bienvenido a Data Beats!</h1>
             <div className = "tablero">
-                {
-                vynils.map((vinilo) => (
-                    <div key = { vinilo._id} className = "vinilo">
+                {vynils.map((vinilo) => (
+                    <div key = {vinilo._id} className = "vinilo" onClick={() => handleChoose(vinilo)} >
                         <img src = {vinilo.img} alt = {vinilo.name}/>
-                        <button onClick={ViewVinil}>{vinilo.nombre}</button>
+                        <button>{vinilo.nombre}</button>
                         <h3>{vinilo.artist}</h3>
                         <h4>{vinilo.year}</h4>
                     </div>
@@ -39,6 +40,7 @@ const MainPage = () => {
             </div>
             <p>Estos son los vinilos que tenemos en nuestra tienda</p>
             </div>
+            {(user.admin) ? <Link to="/create"><h1>¡Bienvenido a Data Beats!</h1></Link> : <h1>eres un usuario normal</h1>}
         </div>
         </main>
     )

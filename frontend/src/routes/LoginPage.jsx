@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
+import { UserContext } from '../context/userContextProvider'
 
 const LoginPage = () => {
   const [users, setUsers] = useState()
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
+
+  // Contexto para adquirir y proveer el usuario a las demas paginas
+  const { user, setUser } = React.useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -23,12 +27,9 @@ const LoginPage = () => {
     const user = users.find((user) => user.username === username)
     if (user) {
       if (user.password === password) {
-
-        if(user.admin){
-          navigate('/vynils-admin')
-        } else{
-          navigate('/vynils')
-        }
+        // detectar si el usuario es un admin
+        navigate('/vynils')
+        setUser(user)
       } else {
         console.log('Wrong password')
       }
