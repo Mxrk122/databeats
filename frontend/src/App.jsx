@@ -6,6 +6,7 @@ import SignUpPage from './routes/SignUpPage'
 import VinilCreate from './routes/VinilCreate'
 import VinilInfo from './routes/vynilInfo'
 import MainAdminPage from './routes/MainAdmin'
+import VynilEdit from './routes/EditVynil'
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
     <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} />} />
+    <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} />} />
   </Routes>)
 }
 

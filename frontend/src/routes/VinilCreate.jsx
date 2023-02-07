@@ -8,6 +8,9 @@ const Create = () => {
 
   return (
     <main>
+      <div className='button-back'>
+            <Link to="/vynils"><button>Volver</button></Link>
+      </div>
       <div className="create-vinil-container">
         <div className="create-vinil-form">
           <input

@@ -32,7 +32,7 @@ const MainPage = ({viewVinil}) => {
                 {vynils.map((vinilo) => (
                     <div key = {vinilo._id} className = "vinilo" onClick={() => handleChoose(vinilo)} >
                         <img src = {vinilo.img} alt = {vinilo.name}/>
-                        <button>{vinilo.nombre}</button>
+                        <h1>{vinilo.name}</h1>
                         <h3>{vinilo.artist}</h3>
                         <h4>{vinilo.year}</h4>
                     </div>

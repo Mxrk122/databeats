@@ -14,8 +14,11 @@ const vynilInfo = ({selectedVynil}) => {
 
     return (
         <main>
+        <div className='button-back'>
+            <Link to="/vynils"><button>Volver</button></Link>
+        </div>
         <div className="vinilo-info-container">
-            {(user.admin) ? <h1>¡Bienvenido a Data Beats!</h1> : <h1>eres un usuario normal</h1>}
+            {(user.admin) ? <Link to="/editVynil"><button>Editar</button></Link> : null}
             <div className="vinilo-info">
                 {vinilos.map((vinilo) => (
                     <div className = "vinilo" key={vinilo._id}>
@@ -26,6 +29,9 @@ const vynilInfo = ({selectedVynil}) => {
                     </div>
                 ))}
             </div>
+        </div>
+        <div className='button-like'>
+            <button>Me gusta</button>
         </div>
         </main>
     )
