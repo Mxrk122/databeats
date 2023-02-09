@@ -12,6 +12,20 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/liked', async (req, res) => {
+  try {
+    const users = await User.find()
+
+    const userFavorites = users.favorites
+
+    res.json(userFavorites)
+
+
+  } catch (error) {
+    res.send({ message: error.message })
+  }
+})
+
 router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -32,10 +46,23 @@ router.patch('/favorite/:id_user/:id_vynil', async (req, res) => {
   try {
     const user = await User.findById(req.params.id_user)
     const vynil = await Vynil.findById(req.params.id_vynil)
-    
-    const newUser = await user.updateOne({ _id: user.id }, { $addToSet: { favorites: vynil.id} })
-    console.log(newUser)
-    res.json(newUser)
+
+    // diferenciar entre el like y el no like
+    // like
+    if (!user.favorites.includes(vynil.id)) {
+      user.favorites.push(vynil.id);
+      const newUser = await user.save();
+      const favorites = newUser.favorites
+      res.json(favorites)
+
+      //dislike
+    } else{
+      user.favorites.pull(vynil.id)
+      const newUser = await user.save();
+      const favorites = newUser.favorites
+      res.json(favorites)
+    }
+
   } catch (error) {
     res.status(400).json({ message: error.message })
   }

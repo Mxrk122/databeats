@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { UserContext } from '../context/userContextProvider'
 
-const LoginPage = () => {
+const LoginPage = ({ handleFavorites }) => {
   const [users, setUsers] = useState()
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
@@ -30,6 +30,7 @@ const LoginPage = () => {
         // detectar si el usuario es un admin
         navigate('/vynils')
         setUser(user)
+        handleFavorites(user.favorites)
       } else {
         console.log('Wrong password')
       }

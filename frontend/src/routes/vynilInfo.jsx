@@ -4,7 +4,8 @@ import { UserContext } from '../context/userContextProvider'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
-const vynilInfo = ({selectedVynil}) => {
+const vynilInfo = ({selectedVynil, likedVynils, setLikedVynils}) => {
+
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
         selectedVynil
@@ -15,8 +16,6 @@ const vynilInfo = ({selectedVynil}) => {
     const handleFavorite = async (event) => {
         event.preventDefault()
         const vynil = selectedVynil
-
-        console.log('http://localhost:4000/users/favorite/' + user._id + '/' + vynil._id)
         
         // Para editar es PATCH
         const response = await fetch('http://localhost:4000/users/favorite/' + user._id + '/' + vynil._id, {
@@ -27,6 +26,7 @@ const vynilInfo = ({selectedVynil}) => {
           body: JSON.stringify(vynil),
         })
         const data = await response.json()
+        setLikedVynils(data)
       }
 
     return (
