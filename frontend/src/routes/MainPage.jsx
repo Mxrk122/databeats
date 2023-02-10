@@ -55,8 +55,6 @@ const MainPage = ({viewVinil}) => {
             ])
         }
         
-        //Imprimimos los valores que se devuelven al momento de presionar el botón
-        console.log(filters)
 
     }
     return (
@@ -75,19 +73,19 @@ const MainPage = ({viewVinil}) => {
         <div className="checkbox-container">
             <h3>Filtrar vinilos por: </h3>
             <div className="input-checkbox">
-                <input onChange={handleOnCheckbox} type="checkbox" id="nombre_vinilos" name="vinilos" value="nombre"/>
+                <input onChange={handleOnCheckbox} type="radio" id="nombre_vinilos" name="vinilos" value="nombre"/>
                 <label htmlFor="name">Nombre</label>
             </div>
             <div className="input-checkbox">
-                <input onChange={handleOnCheckbox} type="checkbox" id="artista_vinilos" name="vinilos" value="artista"/>
+                <input onChange={handleOnCheckbox} type="radio" id="artista_vinilos" name="vinilos" value="artista"/>
                 <label htmlFor="artist">Artista</label>
             </div>
             <div className="input-checkbox">
-                <input onChange={handleOnCheckbox} type="checkbox" id="año_vinilos" name="vinilos" value="año"/>
+                <input onChange={handleOnCheckbox} type="radio" id="año_vinilos" name="vinilos" value="año"/>
                 <label htmlFor="year">Año</label>
             </div>
             <div className="input-checkbox">
-                <input onChange={handleOnCheckbox} type="checkbox" id="genero_vinilos" name="vinilos" value="genero"/>
+                <input onChange={handleOnCheckbox} type="radio" id="genero_vinilos" name="vinilos" value="genero"/>
                 <label htmlFor="genre">Genero</label>
             </div>
 
