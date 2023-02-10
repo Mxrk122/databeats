@@ -7,6 +7,7 @@ const Create = () => {
   const [artist, setArtist] = useState('')
   const [year, setYear] = useState('')
   const [img, setImg] = useState('')
+  const [songs, setSongs] = useState('')
 
   const navigate = useNavigate()
 
@@ -18,7 +19,7 @@ const Create = () => {
       year,
       img,
     }
-    // Para editar es PATCH
+    // Para publicar es POST
     const response = await fetch('http://localhost:4000/vynils', {
       method: 'POST',
       headers: {
@@ -27,8 +28,16 @@ const Create = () => {
       body: JSON.stringify(vynil),
     })
     const data = await response.json()
+    // La informacion de este vinilo se aprovechara para postear canciones
     console.log(data)
     navigate('../vynils')
+  }
+
+  // Generar canciones
+  const generateSongs = () => {
+    for (let i = 0; i < songs; i++){
+      persons.push(<p>{data[i].name + ", " + data[i].age + " years old"}</p>)
+    }
   }
 
   return (
@@ -55,6 +64,12 @@ const Create = () => {
             id="Year"
             placeholder="Año del vinilo"
             onChange={(event) => setYear(event.target.value)}
+          />
+          <input
+            type="Number"
+            id="songs"
+            placeholder="cantidad de canciones"
+            onChange={(event) => setSongs(event.target.value)}
           />
           <input
             type="text"

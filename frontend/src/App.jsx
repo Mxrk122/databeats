@@ -12,17 +12,20 @@ const App = () => {
 
   const [selectedVynil, setSelectedVynil] = useState([])
   const [likedVynils, setLikedVynils] = useState([])
+  const [isLikedVynil, setIsLikedVynil] = useState([])
 
   const viewVynil = (vinyl) => {
     setSelectedVynil(vinyl)
   }
 
   useEffect(() => {
-    console.log(selectedVynil)
-  }, [selectedVynil])
-
-  useEffect(() => {
-    
+    if (likedVynils.includes(selectedVynil._id)) {
+      setIsLikedVynil(true)
+      console.log(likedVynils)
+    } else {
+      setIsLikedVynil(false)
+      console.log("no" + likedVynils)
+    }
   }, [likedVynils])
 
   const handleFavorites = (favorites) => {
@@ -35,7 +38,7 @@ const App = () => {
     <Route path="/login" element={<LoginPage handleFavorites={handleFavorites} />} />
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
-    <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} likedVynils={likedVynils} setLikedVynils={setLikedVynils} />} />
+    <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} isLiked={isLikedVynil} setLikedVynils={setLikedVynils} />} />
     <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
     <Route path='/user' element={<UserInfo />} />
   </Routes>)
