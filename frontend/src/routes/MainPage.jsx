@@ -30,6 +30,10 @@ const MainPage = ({viewVinil}) => {
         <button>
             <Link to="/user">Mi usuario</Link>
         </button>
+        <div>
+				<button>Filtrar <i class="fa fa-filter"></i></button>
+				<input type="text" class="col-8 border-2 p-2" placeholder="Buscar " id="search-filter"/>
+		</div>
         </header>
         <div className="vinilos-container">
             <div className="vinilos">
