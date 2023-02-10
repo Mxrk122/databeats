@@ -4,7 +4,7 @@ import { UserContext } from '../context/userContextProvider'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
-const vynilInfo = ({selectedVynil, likedVynils, setLikedVynils}) => {
+const vynilInfo = ({selectedVynil, isLiked, setLikedVynils}) => {
 
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
@@ -49,7 +49,7 @@ const vynilInfo = ({selectedVynil, likedVynils, setLikedVynils}) => {
             </div>
         </div>
         <div className='button-like'>
-            <button onClick={handleFavorite}>Me gusta</button>
+            <button onClick={handleFavorite}>{isLiked ? "NO ME GUSTA" : "ME GUSTA"}</button>
         </div>
         </main>
     )
