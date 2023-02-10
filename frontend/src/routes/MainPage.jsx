@@ -7,6 +7,14 @@ const MainPage = ({viewVinil}) => {
     //Creamos un array de tipo JSON con los datos de los vinilos
     const [vynils, setVynils] = useState([])
 
+    //Creamos el diccionario para la filtración de la información
+    const [filters, setFilters] = useState({
+        name: false,
+        artist: false,
+        year: false,
+        genre: false,
+    })
+
     const { user } = React.useContext(UserContext)
 
     useEffect(() => {
@@ -23,6 +31,34 @@ const MainPage = ({viewVinil}) => {
         navigate("../viewVynil")
     }
 
+    //Lógica de cómo sería obtener los filtros de la base de datos
+
+    const handleOnCheckbox = (e) => {
+        
+        setFilters({
+            ...filters,
+            [e.target.value]: e.target.checked
+        })
+
+        if (e.target.checked){
+            const resultFilter = vynils.filter(item => item.name === e.target.checked)
+            setVynils([
+                ...vynils,
+                resultFilter
+            ])
+        }
+        else{
+            const resultFilter = vynils.filter(item => item.name !== e.target.checked)
+            setVynils([
+                ...vynils,
+                resultFilter
+            ])
+        }
+        
+        //Imprimimos los valores que se devuelven al momento de presionar el botón
+        console.log(filters)
+
+    }
     return (
         <main>
         <header>
@@ -30,10 +66,32 @@ const MainPage = ({viewVinil}) => {
         <button>
             <Link to="/user">Mi usuario</Link>
         </button>
-        <div>
-				<button>Filtrar <i class="fa fa-filter"></i></button>
-				<input type="text" class="col-8 border-2 p-2" placeholder="Buscar " id="search-filter"/>
-		</div>
+        
+        <div className="search-container">
+            <input type="text" placeholder="Buscar vinilo..."/>
+            <button>Buscar</button>
+        </div>
+
+        <div className="checkbox-container">
+            <h3>Filtrar vinilos por: </h3>
+            <div className="input-checkbox">
+                <input onChange={handleOnCheckbox} type="checkbox" id="nombre_vinilos" name="vinilos" value="nombre"/>
+                <label htmlFor="name">Nombre</label>
+            </div>
+            <div className="input-checkbox">
+                <input onChange={handleOnCheckbox} type="checkbox" id="artista_vinilos" name="vinilos" value="artista"/>
+                <label htmlFor="artist">Artista</label>
+            </div>
+            <div className="input-checkbox">
+                <input onChange={handleOnCheckbox} type="checkbox" id="año_vinilos" name="vinilos" value="año"/>
+                <label htmlFor="year">Año</label>
+            </div>
+            <div className="input-checkbox">
+                <input onChange={handleOnCheckbox} type="checkbox" id="genero_vinilos" name="vinilos" value="genero"/>
+                <label htmlFor="genre">Genero</label>
+            </div>
+
+        </div>
         </header>
         <div className="vinilos-container">
             <div className="vinilos">

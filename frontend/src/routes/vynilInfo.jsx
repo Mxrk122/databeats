@@ -43,6 +43,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils}) => {
                         <h1>{vinilo.name}</h1>
                         <h2>{vinilo.artist}</h2>
                         <h3>{vinilo.year}</h3>
+                        <h4>{vinilo.genre}</h4>
                     </div>
                 ))}
             </div>
