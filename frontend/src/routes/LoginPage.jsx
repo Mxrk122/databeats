@@ -27,10 +27,10 @@ const LoginPage = ({ handleFavorites }) => {
     const user = users.find((user) => user.username === username)
     if (user) {
       if (user.password === password) {
-        // detectar si el usuario es un admin
-        navigate('/vynils')
-        setUser(user)
+        
         handleFavorites(user.favorites)
+        setUser(user)
+        navigate('/vynils')
       } else {
         console.log('Wrong password')
       }

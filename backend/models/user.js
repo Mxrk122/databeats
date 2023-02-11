@@ -6,8 +6,7 @@ const userSchema = new mongoose.Schema({
   lastname: String,
   password: String,
   favorites: [{
-    type: String,
-    unique: true
+    type: String
   }],
   admin: {
     type: Boolean,

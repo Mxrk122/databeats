@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Link, useNavigate} from 'react-router-dom'
+import DynamicInputs from '../utilities/DynamicInputs'
 
 const Create = () => {
   const [name, SetName] = useState('')
@@ -77,6 +78,7 @@ const Create = () => {
             placeholder="link de imagen del vinilo jeje"
             onChange={(event) => setImg(event.target.value)}
           />
+          <DynamicInputs count={songs}/>
         </div>
         <button onClick={handleCreate}>Crear vinilo</button>
       </div>

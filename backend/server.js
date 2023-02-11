@@ -30,7 +30,7 @@ app.use('/users', usersRouter)
 const vynilsRouter = require('./routes/vynils')
 app.use('/vynils', vynilsRouter)
 
-const songsRouter = require('./routes/songs')
-app.use('/songs', songsRouter)
+const songsRouter = require('./routes/rates')
+app.use('/rates', songsRouter)
 
 app.listen(4000, () => console.log('servidor corriendo en el puerto 4000'))

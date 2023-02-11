@@ -46,19 +46,22 @@ router.patch('/favorite/:id_user/:id_vynil', async (req, res) => {
   try {
     const user = await User.findById(req.params.id_user)
     const vynil = await Vynil.findById(req.params.id_vynil)
-
     // diferenciar entre el like y el no like
     // like
-    if (!user.favorites.includes(vynil.id)) {
-      user.favorites.push(vynil.id);
+    if (!user.favorites.includes(vynil._id)) {
+      user.favorites.push(vynil._id);
+      console.log("hola")
       const newUser = await user.save();
+      console.log(newUser)
       const favorites = newUser.favorites
       res.json(favorites)
 
       //dislike
     } else{
+      console.log("adios")
       user.favorites.pull(vynil.id)
       const newUser = await user.save();
+      console.log(newUser)
       const favorites = newUser.favorites
       res.json(favorites)
     }
