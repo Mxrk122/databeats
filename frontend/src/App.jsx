@@ -7,6 +7,7 @@ import VinilCreate from './routes/VinilCreate'
 import VinilInfo from './routes/vynilInfo'
 import VynilEdit from './routes/EditVynil'
 import UserInfo from './routes/UserInfo'
+import SectionPage from './routes/SectionPage'
 
 const App = () => {
 
@@ -54,6 +55,7 @@ const App = () => {
     <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} isLiked={isLikedVynil} setLikedVynils={setLikedVynils} likedVynils={likedVynils} />} />
     <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
     <Route path='/user' element={<UserInfo />} />
+    <Route path='/SectionPage' element={<SectionPage />} />
   </Routes>)
 }
 

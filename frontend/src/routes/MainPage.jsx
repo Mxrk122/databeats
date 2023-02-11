@@ -61,6 +61,7 @@ const MainPage = ({viewVinil}) => {
         <main>
         <header>
         {(user.admin) ? <Link to="/create"><h1>Añadir un vinilo</h1></Link> : null}
+        {(user.admin) ? <button>Eliminar un vinilo</button> : null}
         <button>
             <Link to="/user">Mi usuario</Link>
         </button>
@@ -101,6 +102,10 @@ const MainPage = ({viewVinil}) => {
                         <h1>{vinilo.name}</h1>
                         <h3>{vinilo.artist}</h3>
                         <h4>{vinilo.year}</h4>
+                        <button>Añadir a favoritos +</button>
+                        <button>
+                            <Link to="/SectionPage">Ver Favoritos</Link>
+                        </button>
                     </div>
                 ))}
             </div>
