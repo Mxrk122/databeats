@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Box, FormControl, FormLabel, Input, Button, Flex, Image, Text } from '@chakra-ui/react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 
 const SignUpPage = () => {
@@ -20,7 +21,6 @@ const SignUpPage = () => {
         lastName,
         password,
       }
-      // Para editar es PATCH
       const response = await fetch('http://localhost:4000/users', {
         method: 'POST',
         headers: {
@@ -32,56 +32,127 @@ const SignUpPage = () => {
       console.log(data)
       navigate('/login')
     } else {
-      console.log('contraseñas no coinciden')
+      console.log('passwords do not match')
     }
   }
 
   return (
-    <main>
-      <div className="sign-up-container">
-        <div className="sign-up-icon-container">
-          <img src= {DataBeatsLogo} alt="Data Beats Logo" />
-          <h1>¡Registrate para visualizar nuestra tienda!</h1>
-        </div>
-        <div className="sign-up-form">
-          <input
-            type="text"
+    
+    <Flex 
+      h="100vh" 
+      w="100vw" 
+      align="center" 
+      justify="center" 
+      bgColor="#13955E"
+    >
+      <Box
+      bg="white"
+      p={6}
+      mx="auto"
+      maxW="600px"
+      borderWidth="1px"
+      borderRadius="2xl"
+      boxShadow="dark-lg"
+    >
+      <Flex mb={8} align="center">
+        <Image src={DataBeatsLogo} alt="Data Beats Logo" w={40} mr={6} />
+        <Text fontSize="2xl" fontWeight="bold">
+          Sign Up
+        </Text>
+      </Flex>
+      <form>
+        <FormControl mb={8}>
+          <FormLabel htmlFor="username" fontSize="lg" color="gray.600">Username</FormLabel>
+          <Input
             id="username"
-            placeholder="Username"
+            type="text"
+            value={username}
             onChange={(event) => setUsername(event.target.value)}
+            rounded="lg"
+            w="100%"
+            bg="gray.200"
+            p={4}
+            _focus={{ bg: "white", boxShadow: "outline" }}
           />
-          <input
+        </FormControl>
+        <FormControl mb={8}>
+          <FormLabel htmlFor="firstName" fontSize="lg" color="gray.600">First Name</FormLabel>
+          <Input
+            id="firstName"
             type="text"
-            id="Nombre"
-            placeholder="Nombre"
+            value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
+            rounded="lg"
+            w="100%"
+            bg="gray.200"
+            p={4}
+            _focus={{ bg: "white", boxShadow: "outline" }}
           />
-          <input
+        </FormControl>
+        <FormControl mb={8}>
+          <FormLabel htmlFor="lastName" fontSize="lg" color="gray.600">Last Name</FormLabel>
+          <Input
+            id="lastName"
             type="text"
-            id="Apellidos"
-            placeholder="Apellidos"
+            value={lastName}
             onChange={(event) => setLastName(event.target.value)}
+            rounded="lg"
+            w="100%"
+            bg="gray.200"
+            p={4}
+            _focus={{ bg: "white", boxShadow: "outline" }}
           />
-          <input
-            type="password"
-            id="Contraseña"
-            placeholder="Contraseña"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <input
-            type="password"
-            id="Confirmar-contraseña"
-            placeholder="Confirmar contrseña"
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          />
-        </div>
-        <button onClick={handleSignUp}>Registrarse</button>
-        <p>
-          Si ya posees una cuenta, también puedes <Link to="/login">Iniciar Sesión</Link> aquí.
-        </p>
-      </div>
-    </main>
-  )
-}
+        </FormControl>
+        <FormControl mb={8}>
+          <FormLabel htmlFor="password" fontSize="lg" color="gray.600">Password</FormLabel>
+          <Input
+        id="password"
+        type="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+        rounded="lg"
+        w="100%"
+        bg="gray.200"
+        p={4}
+        _focus={{ bg: "white", boxShadow: "outline" }}
+        
+      />
+    </FormControl>
+    <FormControl mb={8}>
+      <FormLabel htmlFor="confirmPassword" fontSize="lg" color="gray.600">Confirm Password</FormLabel>
+      <Input
+        id="confirmPassword"
+        type="password"
+        value={confirmPassword}
+        onChange={(event) => setConfirmPassword(event.target.value)}
+        rounded="lg"
+        w="100%"
+        bg="gray.200"
+        p={4}
+        _focus={{ bg: "white", boxShadow: "outline" }}
+      />
+    </FormControl>
+    <Button 
+    onClick={handleSignUp}
+    mt={1}
+    w="100%"
+    variantColor="green"
+    variant="solid"
+    rounded="lg"
+    fontSize="lg"
+    bg="grey.200"
+    _hover={{ bg: "green.500" }}
+    _active={{ bg: "green.700" }}>
+      Regístrate
+    </Button>
+    </form>
+    <Text textAlign="center" mt={4} fontSize="sm" color="gray.500">
+    ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+    </Text>
+    </Box>
+  </Flex>
+    
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;
