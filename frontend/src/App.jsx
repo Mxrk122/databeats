@@ -14,48 +14,48 @@ const App = () => {
   const [selectedVynil, setSelectedVynil] = useState([])
   const [likedVynils, setLikedVynils] = useState([])
   const [isLikedVynil, setIsLikedVynil] = useState([])
+  const [aggregation, setAggregation] = useState([])
 
   const viewVynil = (vinyl) => {
     setSelectedVynil(vinyl)
   }
 
   useEffect(() => {
-    console.log(likedVynils)
+    console.log(aggregation)
+  }, [aggregation])
+
+  useEffect(() => {
     if (likedVynils.includes(selectedVynil._id)) {
       setIsLikedVynil(true)
-      console.log(likedVynils)
     } else {
       setIsLikedVynil(false)
-      console.log("no " + likedVynils)
     }
   }, [selectedVynil])
 
   useEffect(() => {
-    console.log(likedVynils)
+  
     if (likedVynils.includes(selectedVynil._id)) {
       setIsLikedVynil(true)
-      console.log(likedVynils)
     } else {
       setIsLikedVynil(false)
-      console.log("no " + likedVynils)
     }
   }, [likedVynils])
 
   const handleFavorites = (favorites) => {
-    console.log("que putas")
     setLikedVynils(favorites)
   }
 
+  
   return (<Routes>
     <Route path="/" element={<LoginPage handleFavorites={handleFavorites}/>} />
-    <Route path="/vynils" element={<MainPage viewVinil={viewVynil} />} />
+    <Route path="/vynils" element={<MainPage viewVinil={viewVynil} setAggregation={setAggregation} />} />
     <Route path="/login" element={<LoginPage handleFavorites={handleFavorites} />} />
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
-    <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} isLiked={isLikedVynil} setLikedVynils={setLikedVynils} likedVynils={likedVynils} />} />
+    <Route path="/viewVynil" element={<VinilInfo selectedVynil={selectedVynil} isLiked={isLikedVynil} setLikedVynils={setLikedVynils} />} />
     <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
     <Route path='/user' element={<UserInfo />} />
-    <Route path='/SectionPage' element={<SectionPage />} />
+    <Route path='/SectionPage' element={<SectionPage aggregation={aggregation} viewVynil={viewVynil} />} />
   </Routes>)
 }
 

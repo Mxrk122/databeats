@@ -20,6 +20,7 @@ const LoginPage = ({ handleFavorites }) => {
       setUsers(data)
     }
     getUsers()
+    console.log("hey")
   }, [])
 
   const handleLogin = (event) => {

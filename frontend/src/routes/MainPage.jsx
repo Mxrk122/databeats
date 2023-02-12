@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider' 
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
-const MainPage = ({viewVinil}) => {
+const MainPage = ({ viewVinil, setAggregation }) => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
     const [vynils, setVynils] = useState([])
@@ -54,14 +54,27 @@ const MainPage = ({viewVinil}) => {
                 resultFilter
             ])
         }
-        
-
     }
+
+    // segun el criterio que aparezca el usuario podraa seleccionar una agregación especifica
+    // por default esta sera favoritos
+    const handleAggregation = (option) => {
+        if (option === "favorites"){
+            setAggregation("favorites")
+        }
+    }
+
+
     return (
         <main>
         <header>
         {(user.admin) ? <Link to="/create"><h1>Añadir un vinilo</h1></Link> : null}
         {(user.admin) ? <button>Eliminar un vinilo</button> : null}
+        <Link to="/SectionPage">
+            <button onClick={() => handleAggregation("favorites")}>
+                Ver Favoritos
+            </button>
+        </Link>
         <button>
             <Link to="/user">Mi usuario</Link>
         </button>
@@ -102,10 +115,6 @@ const MainPage = ({viewVinil}) => {
                         <h1>{vinilo.name}</h1>
                         <h3>{vinilo.artist}</h3>
                         <h4>{vinilo.year}</h4>
-                        <button>Añadir a favoritos +</button>
-                        <button>
-                            <Link to="/SectionPage">Ver Favoritos</Link>
-                        </button>
                     </div>
                 ))}
             </div>

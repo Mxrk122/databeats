@@ -1,23 +1,56 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
+import { UserContext } from '../context/userContextProvider'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
-const SectionPage = ({viewVinil}) => {
-    const vynils = [{
-        _id: 1,
-        name: "The Dark Side of the Moon",
-        artist: "Pink Floyd",
-        year: 1973,
-        genre: "Rock",
-        img: "https://images-na.ssl-images-amazon.com/images/I/81Z9%2BZ1ZQlL._SL1500_.jpg"
-    },
-    {
-        _id: 2,
-        name: "Abbey Road",
-        artist: "The Beatles",
-        year: 1969,
-        genre: "Rock",
-        img: "https://images-na.ssl-images-amazon.com/images/I/81Z9%2BZ1ZQlL._SL1500_.jpg"
-    },]
+const SectionPage = ({ aggregation, viewVynil }) => {
+
+    const { user } = React.useContext(UserContext)
+
+    const [selectedVynils, setSelectedVynils] = useState([])
+
+    const navigate = useNavigate()
+
+    // pedir la agregacion y pasarla a array
+    // ese array se renderiza en esta pagina
+
+    const getAggregation = async () => {
+        if(aggregation === "genre"){
+            const response = await fetch('http://localhost:4000/vynils/favorites/' + user._id, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+            })
+            const data = await response.json()
+            setSelectedVynils([])
+        }
+        if(aggregation === "favorites"){
+            const response = await fetch('http://localhost:4000/vynils/favorites/' + user._id, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+            })
+            const data = await response.json()
+            setSelectedVynils(data)
+        }
+    }
+
+    const handleChoose = (vynil) => {
+        viewVynil([])
+        viewVynil(vynil)
+        navigate("../viewVynil")
+    }
+
+    useEffect(() => {
+        console.log("hola")
+        getAggregation()
+      }, [])
+
+      
+
     return (
         <main>
         <header>
@@ -32,7 +65,7 @@ const SectionPage = ({viewVinil}) => {
             <div className="vinilos">
             <h1>¡Bienvenido a Data Beats!</h1>
             <div className = "tablero">
-                {vynils.map((vinilo) => (
+                {selectedVynils.map((vinilo) => (
                     <div key = {vinilo._id} className = "vinilo" onClick={() => handleChoose(vinilo)} >
                         <img src = {vinilo.img} alt = {vinilo.name}/>
                         <h1>{vinilo.name}</h1>

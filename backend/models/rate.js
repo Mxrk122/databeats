@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const rateSchema = new mongoose.Schema({
   user: String,
-  album: String,
+  vynil: String,
   score: Number,
   comment: String
 })

@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Vynil = require('../models/vynil')
+const User = require('../models/user')
+const oI = require('mongoose').Types.ObjectId;
 
 router.get('/', async (req, res) => {
   try {
@@ -47,6 +49,27 @@ router.patch('/:id', async (req, res) => {
     res.json(newInfo) 
   } catch (error) {
     res.status(400).json({ message: error.message })
+  }
+})
+
+// agregacion para devolver favoritos
+router.put('/favorites/:id_user', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id_user)
+    console.log("user", user);
+    // realizar la busqueda de los favoritos a aprtir del array
+    const favorites = user.favorites.map(id => oI(id))
+    console.log("favoritos", favorites);
+
+    Vynil.find({ _id: { "$in": favorites } }, function(err, documents) {
+      if (err) {
+        res.send({ message: err.message })
+      }
+      console.log("hola", documents);
+      res.json(documents)
+    })
+  } catch (error) {
+    res.send({ message: error.message })
   }
 })
 

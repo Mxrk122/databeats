@@ -4,9 +4,8 @@ import { UserContext } from '../context/userContextProvider'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
-const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, likedVynils}) => {
+const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
-    //Verificar si el vinilo esta en favoritos
     const { user } = React.useContext(UserContext)
 
     //Creamos un array de tipo JSON con los datos de los vinilos
@@ -15,10 +14,26 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, likedVynils}) => {
     ]
 
     // variables para ver y añadir comentarios
-    const [rates, setRates] = useState([])
+    const [vynilRates, setVynilRates] = useState([])
     const [actualRate, setActualRate] = useState([])
     const [actualComment, setActualComment] = useState([])
 
+    // actualizar comentarios
+    const getVynilRates = async () => {
+        const response = await fetch('http://localhost:4000/rates/' + selectedVynil._id)
+        const data = await response.json()
+        setVynilRates(data)
+    }
+
+    useEffect(() => {
+        getVynilRates()
+    }, [])
+
+    useEffect(() => {
+        console.log(vynilRates)
+    }, [vynilRates])
+
+    //Verificar si el vinilo esta en favoritos
     const handleFavorite = async (event) => {
         event.preventDefault()
         const vynil = selectedVynil
@@ -35,12 +50,41 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, likedVynils}) => {
         setLikedVynils(data)
     }
 
-    const handleComment = (event) => {
+    // crear comentaario
+    const handleCreateComment = async (event) => {
         event.preventDefault()
 
-        // Postear comentario
-        console.log(actualRate)
-        console.log(actualComment)
+        if(actualRate === "" || actualComment === ""){
+            return
+        }
+
+        // crear comentario
+
+        const actualUser = user._id
+        const vynil = selectedVynil._id
+        const score = actualRate
+        const comment = actualComment
+
+        const rate = {
+            actualUser,
+            vynil,
+            score,
+            comment
+        }
+
+        console.log(JSON.stringify(rate))
+        
+        // Para editar es PATCH
+        const response = await fetch('http://localhost:4000/rates/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(rate),
+        })
+        const data = await response.json()
+        getVynilRates()
+        console.log(data)
     }
 
     return (
@@ -78,7 +122,14 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, likedVynils}) => {
             placeholder="Comentario"
             onChange={(event) => setActualComment(event.target.value)}
           />
-          <button onClick={handleComment}>{"Añadir comentario"}</button>
+          <button onClick={handleCreateComment}>{"Añadir comentario"}</button>
+          {vynilRates.map((rate) => (
+            <div key={rate._id} className="comment">
+                <h3>{rate.user}</h3>
+                <h4>{rate.score}</h4>
+                <h4>{rate.comment}</h4>
+            </div>
+          ))}
         </div>
         </main>
     )

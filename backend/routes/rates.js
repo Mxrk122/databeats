@@ -4,30 +4,63 @@ const User = require('../models/user')
 const Vynil = require('../models/vynil')
 const Rate = require('../models/rate')
 
-router.get('/', async (req, res) => {
+router.get('/:vynil_id', async (req, res) => {
   try {
-    const rates = await Rate.find()
-    res.json(rates)
+    Rate.find({
+      vynil: req.params.vynil_id
+    }, function (err, docs) {
+      if (err) {
+        // handle the error here
+      } else {
+        // "docs" is an array of documents that match the given criteria
+        const myDocuments = docs
+        res.send(myDocuments)
+      }
+    })
   } catch (error) {
     res.send({ message: error.message })
   } 
 })
 
 router.post('/', async (req, res) => {
-  const rate = new Rate({
-    user: req.body.user,
-    album: req.body.album,
-    score: req.body.score,
-    comment: req.body.comment
-  })
+  // si es un comentario que ya realizo a un disco, actualizarlo
+  const user_id = req.body.actualUser
+  const vynil_id = req.body.vynil
 
-  console.log(rate)
-  try {
-    const newRate = await rate.save()
-    res.status(201).json(newRate)
-  } catch (error) {
-    res.status(400).json({ message: error.message })
-  }
+  Rate.findOne({
+    user: user_id,
+    vynil: vynil_id
+  }, function (err, doc) {
+    if (err) {
+      // handle the error here
+      console.log(err)
+    } else if(!doc){
+      // no document was found, so create a new one
+      const newRate = new Rate({
+        user: req.body.actualUser,
+        vynil: req.body.vynil,
+        score: req.body.score,
+        comment: req.body.comment
+      })
+      try {
+        newRate.save()
+        res.status(201).json({ message: "guardada nueva rate!" })
+      } catch (error) {
+        res.status(400).json({ message: error.message })
+      }
+    } else{
+      // document was found, so update it
+      doc.score = req.body.score
+      doc.comment = req.body.comment
+      try {
+        doc.save()
+        res.status(201).json({ message: "rate aactualizada!" })
+      } catch (error) {
+        res.status(400).json({ message: error.message })
+      }
+    }
+
+  })
 })
 
 module.exports = router

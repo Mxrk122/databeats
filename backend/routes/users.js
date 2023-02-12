@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
-    favorites: [1]
+    favorites: []
   })
 
   console.log(user)
