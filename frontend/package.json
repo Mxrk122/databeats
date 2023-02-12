@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^9.0.1",
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "antd": "^5.2.0",
+    "framer-motion": "^9.0.2",
     "react": "^18.2.0",
     "react-admin": "^4.7.4",
     "react-dom": "^18.2.0",
