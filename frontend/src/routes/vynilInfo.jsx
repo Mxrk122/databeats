@@ -94,6 +94,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         </div>
         <div className="vinilo-info-container">
             {(user.admin) ? <Link to="/editVynil"><button>Editar</button></Link> : null}
+            {(user.admin) ? <button>Borrar</button> : null}
             <div className="vinilo-info">
                 {vinilos.map((vinilo) => (
                     <div className = "vinilo" key={vinilo._id}>
