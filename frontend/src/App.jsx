@@ -8,7 +8,7 @@ import VinilInfo from './routes/vynilInfo'
 import VynilEdit from './routes/EditVynil'
 import UserInfo from './routes/UserInfo'
 import SectionPage from './routes/SectionPage'
-import Dashboard from './routes/Dashboard'
+import ChartPage from './routes/Charts'
 
 const App = () => {
 
@@ -47,11 +47,11 @@ const App = () => {
     setLikedVynils(favorites)
   }
 
-  const charts = [
-    { chartId: "5e902d25f3b7c90024c52a82" },
-    { chartId: "5e902d25f3b7c90024c52a83" },
-    { chartId: "5e902d25f3b7c90024c52a84" }
-];
+  const embeds = [
+    { src: "https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=63ea97f5-f7c5-4555-8409-fda2c81b9f45&maxDataAge=3600&theme=light&autoRefresh=true" },
+    { src: "https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=63ea9605-1d7c-4be3-8bbc-780c6cf8efc1&maxDataAge=3600&theme=light&autoRefresh=true" },
+    { src: "https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=63ea9436-28ca-41b6-8f4b-1430585e7ce6&maxDataAge=3600&theme=light&autoRefresh=true" }
+  ];
 
    // hacer la busqueda d evinilos al entrar
   useEffect(() => {
@@ -69,7 +69,7 @@ const App = () => {
     <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
     <Route path='/user' element={<UserInfo />} />
     <Route path='/SectionPage' element={<SectionPage aggregation={aggregation} viewVynil={viewVynil} />} />
-    
+    <Route path='/charts' element={<ChartPage />} />
   </Routes>)
 }
 

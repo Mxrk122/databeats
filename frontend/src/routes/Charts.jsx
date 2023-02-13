@@ -1,71 +1,44 @@
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/userContextProvider'
 
-import React, { useState, useEffect } from "react";
-import { Box, Stack, Spinner } from "@chakra-ui/react";
-import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
+const ChartPage  = () => {
 
-const initCharts = (charts, setLoading, setError) => {
-  const chartsApi = new ChartsEmbedSDK({
-    baseUrl: "https://charts.mongodb.com/charts-project-0-dfebe"
-  });
+    const charts = [
+        { id: '63ea9436-28ca-41b6-8f4b-1430585e7ce6' },
+        { id: '63ea9605-1d7c-4be3-8bbc-780c6cf8efc1' },
+        { id: '63ea97f5-f7c5-4555-8409-fda2c81b9f45' }
+    ]
 
-  const chartPromises = charts.map(chart =>
-    chartsApi.charts.get({ chartId: chart.chartId }).then(data => {
-      return {
-        ...chart,
-        data: data.spec
-      };
-    })
-  );
-
-  Promise.all(chartPromises)
-    .then(chartSpecs => {
-      setLoading(false);
-      setError(null);
-      return chartSpecs;
-    })
-    .catch(error => {
-      setLoading(false);
-      setError(error);
-    });
-};
-
-const ChartsContainer = ({ charts }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [chartSpecs, setChartSpecs] = useState([]);
-
-  useEffect(() => {
-    initCharts(charts, setLoading, setError);
-  }, []);
-
-  if (loading) {
     return (
-      <Box>
-        <Spinner />
-      </Box>
-    );
-  }
+        <main>
+        <Link to="/vynils">
+            <img
+            />
+        </Link>
+        <div className='charts-container'>
+            {charts.map((chart, index) => (
+            <div
+                key={chart.id}
+                style={{
+                background: "#FFFFFF",
+                border: "none",
+                borderRadius: "2px",
+                boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)",
+            }}
+            >
+            <iframe
+                width="640"
+                height="480"
+                src={`https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=${chart.id}&maxDataAge=3600&theme=light&autoRefresh=true`}
+            />
+            </div>
+        ))}
+        </div>
+    </main>
+    )
+}
 
-  if (error) {
-    return (
-      <Box>
-        <Heading as="h3" size="md">
-          Error loading charts
-        </Heading>
-        <p>{error.message}</p>
-      </Box>
-    );
-  }
+export default ChartPage
 
-  return (
-    <Stack spacing={5}>
-      {chartSpecs.map(chart => (
-        <Box key={chart.chartId}>
-          <p>{JSON.stringify(chart.data)}</p>
-        </Box>
-      ))}
-    </Stack>
-  );
-};
 
-export default ChartsContainer;
