@@ -6,22 +6,12 @@ import { Box, Text, Button, Image, Flex, Avatar } from "@chakra-ui/react";
 
 
 const UserInfo = () => {
-    //Creamos un array de tipo JSON con los datos de los usuarios
-    const [getUsers] = useState()
+    
 
     // Contexto para adquirir el usuario
     const {user, setUser} = React.useContext(UserContext)
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const getUsers = async () => {
-        const response = await fetch('http://localhost:4000/users')
-        const data = await response.json()
-        getUsers(data)
-        }
-        getUsers()
-    }, [])
 
     const handleSignOut = () => {
       setUser(null)
@@ -58,7 +48,7 @@ return (
         <Text fontSize="lg">Apellidos: {user.information.lastName}</Text>
       </Box>
     </Flex>
-    <Button onClick={handleSignOut}>Cerrar sesión</Button>
+    <Button onClick={() => handleSignOut}>Cerrar sesión</Button>
   </Flex>
 );
 
