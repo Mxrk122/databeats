@@ -176,8 +176,13 @@ const MainPage = ({ viewVinil, setAggregation }) => {
               boxShadow="md"
             bgColor = {'#FFFFFF'}
             >
-              <Image src={vinilo.img} alt={vinilo.name} />
-              <Heading as='h1'>{vinilo.name}</Heading>
+              <Image
+                w='200px'
+                h='200px'
+              src={vinilo.img} alt={vinilo.name} />
+              <Heading as='h1'
+                fontSize='xl'
+              >{vinilo.name}</Heading>
               <Text fontWeight='medium'>{vinilo.artist}</Text>
               <Text fontWeight='light'>{vinilo.year}</Text>
             </Box>

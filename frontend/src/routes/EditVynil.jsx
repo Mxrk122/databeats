@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
+import { Box, Button, Flex, Input, Text, Image, Heading } from "@chakra-ui/react";
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 const EditVynil = ({selectedVynil, setSelectedVynil}) => {
     const [name, SetNewName] = useState('')
@@ -48,29 +49,88 @@ const EditVynil = ({selectedVynil, setSelectedVynil}) => {
       }
 
     return (
-        <main>
-        <div className='button-back'>
-            <Link to="/viewVynil"><button>Volver</button></Link>
-        </div>
-        <div className="vinilo-edit-container">
-            <div className="vinilo-edit">
+        <Box as='main'>
+        <Flex 
+        align='center'
+        justify='space-between'
+        w='100%'
+        px='10'
+        py='5'
+        borderBottomWidth='1px'
+        borderBottomColor='gray.200'
+        bgColor={"#ffca38"}
+        >
+            <Button as={Link} to="/viewVynil">Volver</Button>
+        </Flex>
+        <Box
+        >
+            <Box className="vinilo-edit">
                 {vinilos.map((vinilo) => (
-                    <div className = "vinilo_edit" key={vinilo._id}>
-                        <img src = {vinilo.img} alt = {vinilo.name}/>
-                        <h1>{vinilo.name}</h1>
-                        <input type="text" id="New_name_vinil_id" placeholder={vinilo.name} onChange={(event) => SetNewName(event.target.value)}/>
-                        <h1>{vinilo.artist}</h1>
-                        <input type="text" id="New_artist_vinil_id" placeholder={vinilo.artist} onChange={(event) => setNewArtist(event.target.value)}/>
-                        <h1>{vinilo.year}</h1>
-                        <input type="Number" id="New_year_vinil_id" placeholder={vinilo.year} onChange={(event) => setNewYear(event.target.value)}/>
-                        <h1>imagen</h1>
-                        <input type="text" id="New_img" onChange={(event) => setNewImg(event.target.value)}/>
-                    </div>
+                    <Box className = "vinilo_edit" key={vinilo._id}>
+                        <Image 
+                        src = {vinilo.img} 
+                        alt = {vinilo.name}
+                        w = "500px"
+                        h = "500px"
+                        />
+                        <Heading
+                        fontSize="2xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        as='h1'
+                        >{vinilo.name}
+                        </Heading>
+                        <Input
+                        type="text" 
+                        id="New_name_vinil_id" 
+                        placeholder={vinilo.name} 
+                        onChange={(event) => SetNewName(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >{vinilo.artist}</Text>
+                        <Input 
+                        type="text" 
+                        id="New_artist_vinil_id" 
+                        placeholder={vinilo.artist} 
+                        onChange={(event) => setNewArtist(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >{vinilo.year}</Text>
+                        <Input 
+                        type="Number" 
+                        id="New_year_vinil_id" 
+                        placeholder={vinilo.year} 
+                        onChange={(event) => setNewYear(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >Imagen</Text>
+                        <Input 
+                        type="text" 
+                        id="New_img" 
+                        onChange={(event) => setNewImg(event.target.value)}
+                        w= '500px'
+                        />
+                    </Box>
                 ))}
-            </div>
-            <button onClick={handleUpdate}>enviar</button>
-        </div>
-        </main>
+            </Box>
+            <Button
+            onClick={handleUpdate}
+            margin= '8px'
+            >Enviar</Button>
+        </Box>
+        </Box>
     )
 }
 

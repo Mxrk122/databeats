@@ -93,7 +93,10 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
     return (
         <Box p={5}>
-          <Flex justify="space-between">
+          <Flex 
+          justify="space-between"
+          
+          >
             <Link to="/vynils">
               <Button variant="outline">Volver</Button>
             </Link>
