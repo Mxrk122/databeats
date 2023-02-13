@@ -115,6 +115,7 @@ const LoginPage = ({ handleFavorites }) => {
           </Text>
         </Stack>
       </Box>
+      
     </Flex>
   );
 };

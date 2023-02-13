@@ -67,7 +67,7 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
         <Flex
             align='center'
             justify='space-between'
-            w='100%'
+            w='auto'
             px='10'
             py='5'
             borderBottomWidth='1px'
@@ -194,6 +194,19 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
             </Box>
           ))}
         </HStack>
+      </Box>
+      <Box as='footer'
+        w='auto'
+        h='auto'
+        p='10'
+        bgColor={"#ffca38"}
+      >
+        <Text
+          textAlign='center'
+          fontSize='sm'
+        >
+          DataBeats © 2023
+        </Text>
       </Box>
     </Box>
 

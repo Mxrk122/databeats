@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Link, useNavigate} from 'react-router-dom'
-import { Box, FormControl, FormLabel, Input, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Input, Button, Flex, Image, Text} from '@chakra-ui/react'
 
 const Create = () => {
   const [name, SetName] = useState('')
@@ -52,62 +52,137 @@ const Create = () => {
 
   return (
     <Box as='main'>
-      <Flex className='button-back'>
-        <Link to="/vynils"><button>Volver</button></Link>
+      <Flex
+        align='center'
+        justify='space-between'
+        w='auto'
+        px='10'
+        py='5'
+        borderBottomWidth='1px'
+        borderBottomColor='gray.200'
+        bgColor={"#ffca38"}
+      >
+        <Box display="flex" justifyContent="center"
+        >
+            <Image 
+            src={DataBeatsLogo} 
+            alt="DataBeatsLogo"
+            h="50px"
+            w="50px"
+            />
+        </Box>
+
+        <Button
+          as={Link}
+          to='/vynils'
+        >Volver</Button>
       </Flex>
-      <div className="create-vinil-container">
-        <div className="create-vinil-form">
-          <input
+      <Box 
+        bg="white"
+        p={6}
+        rounded="md"
+        shadow="md"
+        w="auto"
+        h="auto"
+        m="auto"
+        mt="10"
+        mb="10"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        
+      >
+        <Flex
+          justifyContent='center'
+          alignItems='center'
+          flexDirection="column"
+          verticalAlign='center'
+          w='500px'
+          h='auto'
+          m='auto'
+          mt='-10'
+          mb='10'
+        >
+          <Input
             type="text"
             id="name"
             placeholder="Nombre del vinilo"
             onChange={(event) => SetName(event.target.value)}
+            m='5px'
+            
           />
-          <input
+          <Input
             type="text"
             id="Artist"
             placeholder="Artista del vinilo"
             onChange={(event) => setArtist(event.target.value)}
+            m='5px'
+            
           />
-          <input
+          <Input
             type="Number"
             id="Year"
             placeholder="Año del vinilo"
             onChange={(event) => setYear(event.target.value)}
+            m='5px'
           />
-          <input
+          <Input
             type="text"
             id="img"
-            placeholder="link de imagen del vinilo jeje"
+            placeholder="Link de imagen del vinilo jeje"
             onChange={(event) => setImg(event.target.value)}
+            m='5px'
           />
-          <input
+          <Input
             type="text"
             id="genre"
             placeholder="Genero del vinilo"
             onChange={(event) => setGenre(event.target.value)}
+            m='5px'
           />
-          <input
+          <Input
             type="text"
             id="scale"
-            placeholder="escala en la que el disco esta escrito mayormente"
+            placeholder="Escala en la que el disco esta escrito mayormente"
             onChange={(event) => setScale(event.target.value)}
+            m='5px'
           />
-          <input
+          <Input
             type="text"
             id="origin"
-            placeholder="pais donde fue publicado"
+            placeholder="Pais donde fue publicado"
             onChange={(event) => setOrigin(event.target.value)}
+            m='5px'
           />
-          <input
+          <Input
             type="text"
             id="language"
-            placeholder="lenguaje del disco"
+            placeholder="Lenguaje del disco"
             onChange={(event) => setLanguage(event.target.value)}
+            m='5px'
+            
           />
-        </div>
-        <button onClick={handleCreate}>Crear vinilo</button>
-      </div>
+        </Flex>
+        <Button 
+        onClick={handleCreate}
+        w='200px'
+        h='50px'
+        >Crear vinilo</Button>
+      </Box>
+      <Box as='footer'
+        w='auto'
+        h='auto'
+        p='10'
+        bgColor={"#ffca38"}
+      >
+        <Text
+          textAlign='center'
+          fontSize='sm'
+        >
+          DataBeats © 2023
+        </Text>
+      </Box>
     </Box>
   )
 }

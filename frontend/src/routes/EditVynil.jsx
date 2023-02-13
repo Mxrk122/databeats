@@ -178,6 +178,19 @@ const EditVynil = ({selectedVynil, setSelectedVynil}) => {
             margin= '8px'
             >Enviar</Button>
         </Box>
+        <Box as='footer'
+        w='auto'
+        h='auto'
+        p='10'
+        bgColor={"#ffca38"}
+      >
+        <Text
+          textAlign='center'
+          fontSize='sm'
+        >
+          DataBeats © 2023
+        </Text>
+      </Box>
         </Box>
     )
 }

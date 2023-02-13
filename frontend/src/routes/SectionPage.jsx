@@ -98,13 +98,28 @@ const SectionPage = ({ aggregation, viewVynil }) => {
               justifyContent='center'
               boxShadow="md"
             >
-              <Image src={vinilo.img} alt={vinilo.name} />
-              <Heading as='h1'>{vinilo.name}</Heading>
+              <Image src={vinilo.img} alt={vinilo.name} w='200px' h='200px'/>
+              <Heading as='h1'
+                fontSize='xl'
+              >{vinilo.name}</Heading>
               <Text fontWeight='medium'>{vinilo.artist}</Text>
               <Text fontWeight='light'>{vinilo.year}</Text>
             </Box>
           ))}
         </HStack>
+      </Box>
+      <Box as='footer'
+        w='auto'
+        h='auto'
+        p='10'
+        bgColor={"#ffca38"}
+      >
+        <Text
+          textAlign='center'
+          fontSize='sm'
+        >
+          DataBeats © 2023
+        </Text>
       </Box>
     </Box>
   );
