@@ -29,6 +29,7 @@ router.get('/liked', async (req, res) => {
 router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
+    information: req.body.information,
     password: req.body.password,
     favorites: []
   })

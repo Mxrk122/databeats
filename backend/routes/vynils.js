@@ -18,7 +18,14 @@ router.post('/', async (req, res) => {
     name: req.body.name,
     artist: req.body.artist,
     year: req.body.year,
-    img: req.body.img
+    img: req.body.img,
+    information: {
+      genre: req.body.information.genre,
+      scale: req.body.information.scale,
+      origin: req.body.information.origin,
+      language: req.body.information.language
+    },
+
   })
   try {
     const newVynil = await vynil.save()

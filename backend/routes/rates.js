@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
       // no document was found, so create a new one
       const newRate = new Rate({
         user: req.body.actualUser,
+        username: req.body.username,
         vynil: req.body.vynil,
         score: req.body.score,
         comment: req.body.comment

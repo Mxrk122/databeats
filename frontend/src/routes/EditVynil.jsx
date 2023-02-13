@@ -7,6 +7,10 @@ const EditVynil = ({selectedVynil, setSelectedVynil}) => {
     const [artist, setNewArtist] = useState('')
     const [year, setNewYear] = useState('')
     const [img, setNewImg] = useState('')
+    const [genre, setGenre] = useState('')
+    const [scale, setScale] = useState('')
+    const [origin, setOrigin] = useState('')
+    const [language, setLanguage] = useState('')
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
         selectedVynil
@@ -18,11 +22,17 @@ const EditVynil = ({selectedVynil, setSelectedVynil}) => {
 
     const handleUpdate = async (event) => {
         event.preventDefault()
+
+        const information = {
+            genre, scale, origin, language
+        }
+
         const vynil = {
           name,
           artist,
           year,
           img,
+          information
         }
         
         // Para editar es PATCH

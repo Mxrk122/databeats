@@ -7,6 +7,7 @@ const SignUpPage = () => {
   const [username, setUsername] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [origin, setOrigin] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -15,12 +16,19 @@ const SignUpPage = () => {
   const handleSignUp = async (event) => {
     event.preventDefault()
     if (password === confirmPassword) {
-      const user = {
-        username,
+
+      const information = {
         firstName,
         lastName,
-        password,
+        origin
       }
+
+      const user = {
+        username,
+        information,
+        password
+      }
+
       const response = await fetch('http://localhost:4000/users', {
         method: 'POST',
         headers: {
@@ -96,6 +104,20 @@ const SignUpPage = () => {
             type="text"
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
+            rounded="lg"
+            w="100%"
+            bg="gray.200"
+            p={4}
+            _focus={{ bg: "white", boxShadow: "outline" }}
+          />
+        </FormControl>
+        <FormControl mb={8}>
+          <FormLabel htmlFor="origin" fontSize="lg" color="gray.600">Pais de origen</FormLabel>
+          <Input
+            id="origen"
+            type="text"
+            value={origin}
+            onChange={(event) => setOrigin(event.target.value)}
             rounded="lg"
             w="100%"
             bg="gray.200"
