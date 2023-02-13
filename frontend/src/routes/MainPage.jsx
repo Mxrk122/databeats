@@ -33,37 +33,29 @@ const MainPage = ({ viewVinil, setAggregation }) => {
     }
 
     //Lógica de cómo sería obtener los filtros de la base de datos
-
-    const handleOnCheckbox = (e) => {
-        
-        setFilters({
-            ...filters,
-            [e.target.value]: e.target.checked
-        })
-
-        if (e.target.checked){
-            const resultFilter = vynils.filter(item => item.name === e.target.checked)
-            setVynils([
-                ...vynils,
-                resultFilter
-            ])
-        }
-        else{
-            const resultFilter = vynils.filter(item => item.name !== e.target.checked)
-            setVynils([
-                ...vynils,
-                resultFilter
-            ])
+    const handleOnCheckbox = (e) => { 
+        switch (e) {
+            case 'name':
+                console.log("name")
+                break;
+            case 'artist':
+                console.log("artist")
+                break;
+            case 'year':
+                console.log("year")
+                break;
+            default:
+                break;
         }
     }
-
-    // segun el criterio que aparezca el usuario podraa seleccionar una agregación especifica
-    // por default esta sera favoritos
+            // segun el criterio que aparezca el usuario podraa seleccionar una agregación especifica
+            // por default esta sera favoritos
     const handleAggregation = (option) => {
-        if (option === "favorites"){
-            setAggregation("favorites")
-        }
+                if (option === "favorites"){
+                    setAggregation("favorites")
+                }
     }
+
 
 
     return (
@@ -93,7 +85,45 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             py='5'
             bgColor={"#ffca38"}
         >
-            <Heading as='h4'>Filtrar por:</Heading>
+            <Heading as='h4'
+            mr='10px'
+            >Filtrar por:</Heading>
+            <Box
+            d='flex'
+            alignItems='center'
+            justifyContent='center'
+            flexDirection='row'
+            bgColor={"#ffca38"}
+            >
+                <Button 
+                d='flex'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='row'
+                bgColor={"#ffca38"}
+                onClick={() => handleOnCheckbox("name")}
+                >Nombre</Button>
+
+                <Button 
+                d='flex'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='row'
+                bgColor={"#ffca38"}
+                onClick={() => handleOnCheckbox("artist")}
+                >Artista</Button>
+
+                <Button 
+
+                d='flex'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='row'
+                bgColor={"#ffca38"}
+                onClick={() => handleOnCheckbox("year")}
+                >Año</Button>
+            </Box>
+            
         </Flex>
 
         <Button as={Link} to="/user">
@@ -105,6 +135,10 @@ const MainPage = ({ viewVinil, setAggregation }) => {
         </Button>
 
         </Flex>
+        
+        
+
+
         <Box
             mt='30spx'
             p='5'
