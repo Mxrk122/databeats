@@ -77,7 +77,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
         console.log(JSON.stringify(rate))
         
-        // Para editar es PATCH
+        // Para eañadir es post
         const response = await fetch('http://localhost:4000/rates/', {
           method: 'POST',
           headers: {
@@ -91,6 +91,10 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         getVynilRates()
     }
 
+    const handleDelete = async () => {
+        console.log(selectedVynil.name, " borrado")
+    }
+
     return (
         <Box p={5}>
           <Flex justify="space-between">
@@ -102,7 +106,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
                 <Link to="/editVynil">
                   <Button variant="outline">Editar</Button>
                 </Link>
-                <Button variant="outline" ml={5}>
+                <Button variant="outline" ml={5} onClick={() => handleDelete}>
                   Borrar
                 </Button>
               </Flex>
