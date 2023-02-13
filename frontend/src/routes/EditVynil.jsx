@@ -118,8 +118,56 @@ const EditVynil = ({selectedVynil, setSelectedVynil}) => {
                         >Imagen</Text>
                         <Input 
                         type="text" 
-                        id="New_img" 
+                        id="New_img"
                         onChange={(event) => setNewImg(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >Genero</Text>
+                        <Input 
+                        type="text" 
+                        id="New_genre"
+                        placeholder={vinilo.information.genre} 
+                        onChange={(event) => setNewGenre(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >Escala</Text>
+                        <Input 
+                        type="text" 
+                        id="New_scale"
+                        placeholder={vinilo.information.scale}
+                        onChange={(event) => setNewScale(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >País de publicación</Text>
+                        <Input 
+                        type="text" 
+                        id="New_origin" 
+                        placeholder={vinilo.information.origin}
+                        onChange={(event) => setNewOrigin(event.target.value)}
+                        w= '500px'
+                        />
+                        <Text
+                        fontSize="xl"
+                        fontWeight="semibold"
+                        lineHeight="short"
+                        >Idioma del disco</Text>
+                        <Input 
+                        type="text" 
+                        id="New_lan"
+                        placeholder={vinilo.information.language}
+                        onChange={(event) => setNewLanguage(event.target.value)}
                         w= '500px'
                         />
                     </Box>

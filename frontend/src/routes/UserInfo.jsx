@@ -10,7 +10,7 @@ const UserInfo = () => {
     const [getUsers] = useState()
 
     // Contexto para adquirir el usuario
-    const {user} = React.useContext(UserContext)
+    const {user, setUser} = React.useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -23,8 +23,10 @@ const UserInfo = () => {
         getUsers()
     }, [])
 
-
-
+    const handleSignOut = () => {
+      setUser(null)
+      navigate('../')
+    }
 
 return (
   <Flex direction="column" align="center" justify="center">
@@ -51,12 +53,12 @@ return (
     >
       <Box align="center">
         <Avatar name="user" size="350px" mb={5} />
-        <Text fontSize="xl">Nombre de usuario: {user.username}</Text>
-        <Text fontSize="lg">Nombre: {user.firstname}</Text>
-        <Text fontSize="lg">Apellidos: {user.lastname}</Text>
+        <Text fontSize="xl">Nombre de usuario: {user.information.username}</Text>
+        <Text fontSize="lg">Nombre: {user.information.firstName}</Text>
+        <Text fontSize="lg">Apellidos: {user.information.lastName}</Text>
       </Box>
     </Flex>
-    <Button>Cerrar sesión</Button>
+    <Button onClick={handleSignOut}>Cerrar sesión</Button>
   </Flex>
 );
 
