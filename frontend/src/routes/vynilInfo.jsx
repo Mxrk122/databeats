@@ -3,7 +3,7 @@ import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Box, Button, Flex, Input, Text, Image } from "@chakra-ui/react";
-
+import '../styles/img.css'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
@@ -165,33 +165,30 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     </Box>
           
           <Box mt={10} display="flex" alignItems="center" p={4}>
-            <Image src={vinilos[0].img} alt={vinilos[0].name} />
+            <Image src={vinilos[0].img} alt={vinilos[0].name} className="vynil-img"/>
             <Box ml={10}>
-              <Text fontWeight="bold" fontSize="lg">
+              <Text fontWeight="bold" fontSize="25px">
                 {vinilos[0].name}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {vinilos[0].artist}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {vinilos[0].year}
               </Text>
-              <Text fontSize="sm" color="gray.500">
-                {vinilos[0].genre}
-              </Text>
-              <Text ffontWeight="bold" fontSize="lg">
+              <Text fontWeight="semibold" fontSize="25px">
                 Informacion especial
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {"Género: " + vinilos[0].information.genre}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {"Escala: " + vinilos[0].information.scale}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {"Publicado en: " + vinilos[0].information.origin}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="20px" color="gray.500">
                 {"Idioma: " + vinilos[0].information.language}
               </Text>
             </Box>

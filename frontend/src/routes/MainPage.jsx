@@ -120,24 +120,6 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
                 bgColor={"#ffca38"}
                 onClick={() => handleOnCheckbox("year")}
                 >Año</Button>
-
-                <Button 
-                d='flex'
-                alignItems='center'
-                justifyContent='center'
-                flexDirection='row'
-                bgColor={"#ffca38"}
-                onClick={() => handleOnCheckbox("rating")}
-                >Mejor rating</Button>
-
-                <Button 
-                d='flex'
-                alignItems='center'
-                justifyContent='center'
-                flexDirection='row'
-                bgColor={"#ffca38"}
-                onClick={() => handleOnCheckbox("comment")}
-                >Más comentados</Button>
             </Box>
             
         </Flex>

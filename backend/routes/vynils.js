@@ -82,8 +82,20 @@ router.patch('/:id', async (req, res) => {
 
     } if(req.body.img !== null && req.body.img !== ''){
       updatedVynil.img = req.body.img
+
+    } if(req.body.information.genre !== null && req.body.information.genre !== ''){
+      updatedVynil.information.genre = req.body.information.genre
+
+    } if(req.body.information.scale !== null && req.body.information.scale !== ''){
+      updatedVynil.information.scale = req.body.information.scale
+
+    } if(req.body.information.origin !== null && req.body.information.origin !== ''){
+      updatedVynil.information.origin = req.body.information.origin
+
+    } if(req.body.information.language !== null && req.body.information.language !== ''){
+      updatedVynil.information.language = req.body.information.language
     }
-    
+     
     const newInfo = await updatedVynil.save()
     console.log(newInfo)
     res.json(newInfo) 
