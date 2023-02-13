@@ -75,7 +75,7 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
             bgColor={"#ffca38"}
         >
         {(user.admin) ? <Button as={Link} to="/create">Añadir un vinilo</Button> : null}
-        
+        {(user.admin) ? <Button as={Link} to="/charts">Ver charts</Button> : null}
         <Flex
             align='center'
             justifyContent='space-between'
