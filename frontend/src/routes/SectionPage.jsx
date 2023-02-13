@@ -74,9 +74,11 @@ const SectionPage = ({ aggregation, viewVynil }) => {
         <Heading as='h1'>¡Mis discos favoritos!</Heading>
         <HStack
           w='100%'
-          maxW='1100px'
+          maxW='auto'
           d='flex'
           flexWrap='wrap'
+          alignItems='center'
+          justifyContent='center'
         >
           {selectedVynils.map((vinilo) => (
             <Box
