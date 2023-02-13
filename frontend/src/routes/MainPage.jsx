@@ -3,7 +3,7 @@ import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
 import { Box, Heading, Image, Text, Flex, Button, HStack, Radio } from '@chakra-ui/react'
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
-const MainPage = ({ viewVinil, setAggregation }) => {
+const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
     const navigate = useNavigate()
     //Creamos un array de tipo JSON con los datos de los vinilos
     const [vynils, setVynils] = useState([])
@@ -18,14 +18,15 @@ const MainPage = ({ viewVinil, setAggregation }) => {
 
     const { user } = React.useContext(UserContext)
 
+    // busqueda cuando cambia el filtro
     useEffect(() => {
         const getVynils = async () => {
-          const response = await fetch('http://localhost:4000/vynils')
+          const response = await fetch('http://localhost:4000/vynils/' + filter)
           const data = await response.json()
           setVynils(data)
         }
         getVynils()
-    }, [])
+    }, [filter])
 
     const handleChoose = (vynil) => {
         viewVinil(vynil)

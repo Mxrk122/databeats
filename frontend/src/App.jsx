@@ -15,6 +15,7 @@ const App = () => {
   const [likedVynils, setLikedVynils] = useState([])
   const [isLikedVynil, setIsLikedVynil] = useState([])
   const [aggregation, setAggregation] = useState([])
+  const [filter, setFilter] = useState("")
 
   const viewVynil = (vinyl) => {
     setSelectedVynil(vinyl)
@@ -45,10 +46,15 @@ const App = () => {
     setLikedVynils(favorites)
   }
 
+   // hacer la busqueda d evinilos al entrar
+  useEffect(() => {
+    setFilter("nothing")
+  }, [])
+
   
   return (<Routes>
     <Route path="/" element={<LoginPage handleFavorites={handleFavorites}/>} />
-    <Route path="/vynils" element={<MainPage viewVinil={viewVynil} setAggregation={setAggregation} />} />
+    <Route path="/vynils" element={<MainPage viewVinil={viewVynil} setAggregation={setAggregation} filter={filter} setFilter={setFilter} />} />
     <Route path="/login" element={<LoginPage handleFavorites={handleFavorites} />} />
     <Route path="/sign-up" element={<SignUpPage />} />
     <Route path="/create" element={<VinilCreate />} />
