@@ -58,13 +58,13 @@ const LoginPage = ({ handleFavorites }) => {
       align="center" 
       justify="center" 
       direction="column"
-      bgColor="#13955E"
+      bgColor="#ffca38"
     >
       <Box w={["100%", "30%"]} p={8} rounded="lg" bg="white" boxShadow="dark-lg">
         <Stack spacing={8}>
-          <Box className="login-icon-container" align="center">
-            <img src={DataBeatsLogo} alt="Data Beats Logo" />
-            <Heading as="h1" textAlign="center">¡Bienvenido a Data Beats!</Heading>
+          <Box className="login-icon-container" align="center" p={6}>
+            <img src={DataBeatsLogo} alt="Data Beats Logo" width="80px" height="80px"/>
+            <Heading as="h1" textAlign="center" m={6}>¡Bienvenido a Data Beats!</Heading>
           </Box>
           <FormControl>
             <FormLabel htmlFor="username" fontSize="lg" color="gray.600">Usuario</FormLabel>
@@ -102,13 +102,13 @@ const LoginPage = ({ handleFavorites }) => {
             onClick={handleLogin}
             mt={8}
             w="100%"
-            variantColor="green"
+            variantColor="yellow"
             variant="solid"
             rounded="lg"
             fontSize="lg"
             bg="grey.200"
-            _hover={{ bg: "green.500" }}
-            _active={{ bg: "green.700" }}>Iniciar Sesión</Button>
+            _hover={{ bg: "yellow.500" }}
+            _active={{ bg: "yellow.700" }}>Iniciar Sesión</Button>
           
           <Text textAlign="center" mt={8} fontSize="sm" color="gray.500">
             ¿Aún no tienes una cuenta? <Link to="/sign-up">Regístrate</Link>

@@ -43,7 +43,7 @@ const SignUpPage = () => {
       w="100vw" 
       align="center" 
       justify="center" 
-      bgColor="#13955E"
+      bgColor="#ffca38"
     >
       <Box
       bg="white"
@@ -55,7 +55,7 @@ const SignUpPage = () => {
       boxShadow="dark-lg"
     >
       <Flex mb={8} align="center">
-        <Image src={DataBeatsLogo} alt="Data Beats Logo" w={40} mr={6} />
+        <Image src={DataBeatsLogo} alt="Data Beats Logo" w={"100px"} mr={6} />
         <Text fontSize="2xl" fontWeight="bold">
           Sign Up
         </Text>
@@ -136,13 +136,13 @@ const SignUpPage = () => {
     onClick={handleSignUp}
     mt={1}
     w="100%"
-    variantColor="green"
+    variantColor="yellow"
     variant="solid"
     rounded="lg"
     fontSize="lg"
     bg="grey.200"
-    _hover={{ bg: "green.500" }}
-    _active={{ bg: "green.700" }}>
+    _hover={{ bg: "yellow.500" }}
+    _active={{ bg: "yellow.700" }}>
       Regístrate
     </Button>
     </form>
