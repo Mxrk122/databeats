@@ -3,6 +3,7 @@ import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Box, Button, Flex, Input, Text, Image } from "@chakra-ui/react";
+
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
@@ -140,8 +141,14 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         <Link to="/vynils">
           <Button>Volver</Button>
         </Link>
-        <Box display="flex" justifyContent="center">
-            <Image src={DataBeatsLogo} alt="Data Beats Logo" width="40px" height="40px"/>
+        <Box display="flex" justifyContent="center"
+        >
+            <Image 
+            src={DataBeatsLogo} 
+            alt="DataBeatsLogo"
+            h="50px"
+            w="50px"
+            />
         </Box>
         {user.admin && (
           <Flex>
