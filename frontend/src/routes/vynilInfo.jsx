@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
+import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Box, Button, Flex, Input, Text, Image } from "@chakra-ui/react";
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
 const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
+
+    const navigate = useNavigate()
 
     const { user } = React.useContext(UserContext)
 
@@ -31,7 +34,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     }, [])
 
     useEffect(() => {
-        console.log(vynilRates)
+        
     }, [vynilRates])
 
     //Verificar si el vinilo esta en favoritos
@@ -77,7 +80,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
         console.log(JSON.stringify(rate))
         
-        // Para editar es PATCH
+        // Para eañadir es post
         const response = await fetch('http://localhost:4000/rates/', {
           method: 'POST',
           headers: {
@@ -91,28 +94,49 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         getVynilRates()
     }
 
+    const handleDelete = async () => {
+        // Para eañadir es post
+        const vynil = selectedVynil
+
+        const response = await fetch('http://localhost:4000/vynils/' + selectedVynil._id, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(selectedVynil),
+        })
+        const data = await response.json()
+        console.log(data)
+        navigate('../vynils')
+    }
+
     return (
-        <Box p={5}>
-          <Flex 
-          justify="space-between"
-          
-          >
-            <Link to="/vynils">
-              <Button variant="outline">Volver</Button>
+    <Box 
+    h="100vh" 
+    w="100vw">
+        <Box bgColor={"#ffca38"}>
+      <Flex justify="space-between" p={4}>
+        <Link to="/vynils">
+          <Button>Volver</Button>
+        </Link>
+        <Box display="flex" justifyContent="center">
+            <Image src={DataBeatsLogo} alt="Data Beats Logo" width="40px" height="40px"/>
+        </Box>
+        {user.admin && (
+          <Flex>
+            <Link to="/editVynil">
+              <Button>Editar</Button>
             </Link>
-            {user.admin && (
-              <Flex>
-                <Link to="/editVynil">
-                  <Button variant="outline">Editar</Button>
-                </Link>
-                <Button variant="outline" ml={5}>
-                  Borrar
-                </Button>
-              </Flex>
-            )}
+            <Button ml={5} onClick={handleDelete}>
+              Borrar
+            </Button>
           </Flex>
+        )}
+      </Flex>
       
-          <Box mt={10} display="flex" alignItems="center">
+    </Box>
+          
+          <Box mt={10} display="flex" alignItems="center" p={4}>
             <Image src={vinilos[0].img} alt={vinilos[0].name} />
             <Box ml={10}>
               <Text fontWeight="bold" fontSize="lg">
@@ -127,14 +151,32 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
               <Text fontSize="sm" color="gray.500">
                 {vinilos[0].genre}
               </Text>
+              <Text ffontWeight="bold" fontSize="lg">
+                Informacion especial
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Género: " + vinilos[0].information.genre}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Escala: " + vinilos[0].information.scale}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Publicado en: " + vinilos[0].information.origin}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Idioma: " + vinilos[0].information.language}
+              </Text>
             </Box>
           </Box>
-      
-          <Button mt={10} onClick={handleFavorite}>
-            {isLiked ? "NO ME GUSTA" : "ME GUSTA"}
-          </Button>
-      
-          <Box mt={10}>
+          
+          <Box p={4}>
+            <Button mt={10} variantColor={isLiked ? "red" : "teal"} onClick={handleFavorite}>
+                {isLiked ? "NO ME GUSTA" : "ME GUSTA"}
+            </Button>
+          </Box>
+          
+          
+          <Box mt={10} p={4}>
             <Input
               type="number"
               id="rate"
@@ -149,12 +191,12 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
               onChange={(event) => setActualComment(event.target.value)}
               mb={5}
             />
-            <Button onClick={handleCreateComment}>Añadir comentario</Button>
+            <Button variantColor="teal" onClick={handleCreateComment}>Añadir comentario</Button>
           </Box>
-      
+          
           {vynilRates.map((rate) => (
             <Box
-              p={5}
+              p={6}
               borderWidth="1px"
               borderRadius="10px"
               borderColor="gray.300"
@@ -172,6 +214,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
           ))}
         </Box>
       );
+      
       
 }
 

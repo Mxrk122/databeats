@@ -38,21 +38,25 @@ router.post('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const updatedVynil = await Vynil.findById(req.params.id)
+
+    console.log(req.body)
     
-    if(req.body.name !== null){
+    if(req.body.name !== null && req.body.name !== ''){
+      console.log("name:", req.body.name)
       updatedVynil.name = req.body.name
 
-    } if(req.body.artist !== null){
+    } if(req.body.artist !== null && req.body.artist !== ''){
       updatedVynil.artist = req.body.artist
 
-    } if(req.body.year !== null){
+    } if(req.body.year !== null && req.body.year !== ''){
       updatedVynil.year = req.body.year
 
-    } if(req.body.img !== null){
+    } if(req.body.img !== null && req.body.img !== ''){
       updatedVynil.img = req.body.img
     }
     
     const newInfo = await updatedVynil.save()
+    console.log(newInfo)
     res.json(newInfo) 
   } catch (error) {
     res.status(400).json({ message: error.message })
@@ -75,6 +79,22 @@ router.put('/favorites/:id_user', async (req, res) => {
       console.log("hola", documents);
       res.json(documents)
     })
+  } catch (error) {
+    res.send({ message: error.message })
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const vynil = await Vynil.findById(req.params.id)
+    console.log("vinlo a aborrar: ", vynil.name)
+
+    Vynil.findOneAndRemove({_id: vynil._id}, function(err) {
+      if (err) return handleError(err);
+      console.log('El vinilo ha sido eliminado con éxito.')
+      res.send({ message: "borrado" })
+    })
+
   } catch (error) {
     res.send({ message: error.message })
   }

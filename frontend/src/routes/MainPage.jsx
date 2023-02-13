@@ -68,8 +68,8 @@ const MainPage = ({ viewVinil, setAggregation }) => {
 
     return (
         <Box as= 'main'
-            w='100%'
-            h='100%'
+        h="100vh" 
+        w="100vw"
 
         
         >
@@ -77,11 +77,10 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             align='center'
             justify='space-between'
             w='100%'
-            px='10'
-            py='5'
             borderBottomWidth='1px'
             borderBottomColor='gray.200'
             bgColor={"#ffca38"}
+            p={4}
         >
         {(user.admin) ? <Button as={Link} to="/create">Añadir un vinilo</Button> : null}
         
@@ -93,7 +92,7 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             py='5'
             bgColor={"#ffca38"}
         >
-            <Heading as='h4'>Filtrar por:</Heading>
+            <Heading as='h6'>Filtrar por: </Heading>
             <Radio
                 value="name"
                 onChange={handleOnCheckbox}
@@ -147,7 +146,7 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             textAlign='center'
             mb='5'
             >
-                ¡Bienvenido a Databeats! 
+                Catálogo 
             </Heading>
         <HStack
           w='100%'
@@ -156,24 +155,25 @@ const MainPage = ({ viewVinil, setAggregation }) => {
           flexWrap='wrap'
           justifyContent='center'
           alignItems='center'
+          spacing={6}
+          p={8}
 
         >
           {vynils.map((vinilo) => (
             <Box
-              key={vinilo._id}
-              m='25px'
-              onClick={() => handleChoose(vinilo)}
-              cursor='pointer'
-              borderWidth='1px'
-              borderRadius='lg'
-              borderColor='gray.200'
-              w='250px'
-              h='400px'
-              display='flex'
-              flexDirection='column'
-              alignItems='center'
-              justifyContent='center'
-              boxShadow="md"
+            key={vinilo._id}
+            onClick={() => handleChoose(vinilo)}
+            cursor='pointer'
+            borderWidth='1px'
+            borderRadius='lg'
+            borderColor='gray.200'
+            w='250px'
+            h='400px'
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent='center'
+            boxShadow="md"
             bgColor = {'#FFFFFF'}
             >
               <Image

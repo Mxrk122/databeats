@@ -4,14 +4,14 @@ import { UserContext } from '../context/userContextProvider'
 import { Box, Button, Flex, Input, Text, Image, Heading } from "@chakra-ui/react";
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 const EditVynil = ({selectedVynil, setSelectedVynil}) => {
-    const [name, SetNewName] = useState('')
-    const [artist, setNewArtist] = useState('')
-    const [year, setNewYear] = useState('')
-    const [img, setNewImg] = useState('')
-    const [genre, setGenre] = useState('')
-    const [scale, setScale] = useState('')
-    const [origin, setOrigin] = useState('')
-    const [language, setLanguage] = useState('')
+    const [name, SetNewName] = useState(null)
+    const [artist, setNewArtist] = useState(null)
+    const [year, setNewYear] = useState(null)
+    const [img, setNewImg] = useState(null)
+    const [genre, setNewGenre] = useState(null)
+    const [scale, setNewScale] = useState(null)
+    const [origin, setNewOrigin] = useState(null)
+    const [language, setNewLanguage] = useState(null)
     //Creamos un array de tipo JSON con los datos de los vinilos
     const vinilos = [
         selectedVynil
