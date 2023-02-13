@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
+import { Box, Button, Flex, Input, Text, Image } from "@chakra-ui/react";
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
@@ -88,52 +89,84 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     }
 
     return (
-        <main>
-        <div className='button-back'>
-            <Link to="/vynils"><button>Volver</button></Link>
-        </div>
-        <div className="vinilo-info-container">
-            {(user.admin) ? <Link to="/editVynil"><button>Editar</button></Link> : null}
-            {(user.admin) ? <button>Borrar</button> : null}
-            <div className="vinilo-info">
-                {vinilos.map((vinilo) => (
-                    <div className = "vinilo" key={vinilo._id}>
-                        <img src = {vinilo.img} alt = {vinilo.name}/>
-                        <h1>{vinilo.name}</h1>
-                        <h2>{vinilo.artist}</h2>
-                        <h3>{vinilo.year}</h3>
-                        <h4>{vinilo.genre}</h4>
-                    </div>
-                ))}
-            </div>
-        </div>
-        <div className='button-like'>
-            <button onClick={handleFavorite}>{isLiked ? "NO ME GUSTA" : "ME GUSTA"}</button>
-        </div>
-        <div className="comment-section">
-          <input
-            type="number"
-            id="rate"
-            placeholder="Calificacion sobre 100"
-            onChange={(event) => setActualRate(event.target.value)}
-          />
-          <input
-            type="text"
-            id="Comment"
-            placeholder="Comentario"
-            onChange={(event) => setActualComment(event.target.value)}
-          />
-          <button onClick={handleCreateComment}>{"Añadir comentario"}</button>
+        <Box p={5}>
+          <Flex justify="space-between">
+            <Link to="/vynils">
+              <Button variant="outline">Volver</Button>
+            </Link>
+            {user.admin && (
+              <Flex>
+                <Link to="/editVynil">
+                  <Button variant="outline">Editar</Button>
+                </Link>
+                <Button variant="outline" ml={5}>
+                  Borrar
+                </Button>
+              </Flex>
+            )}
+          </Flex>
+      
+          <Box mt={10} display="flex" alignItems="center">
+            <Image src={vinilos[0].img} alt={vinilos[0].name} />
+            <Box ml={10}>
+              <Text fontWeight="bold" fontSize="lg">
+                {vinilos[0].name}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {vinilos[0].artist}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {vinilos[0].year}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {vinilos[0].genre}
+              </Text>
+            </Box>
+          </Box>
+      
+          <Button mt={10} onClick={handleFavorite}>
+            {isLiked ? "NO ME GUSTA" : "ME GUSTA"}
+          </Button>
+      
+          <Box mt={10}>
+            <Input
+              type="number"
+              id="rate"
+              placeholder="Calificacion sobre 100"
+              onChange={(event) => setActualRate(event.target.value)}
+              mb={5}
+            />
+            <Input
+              type="text"
+              id="Comment"
+              placeholder="Comentario"
+              onChange={(event) => setActualComment(event.target.value)}
+              mb={5}
+            />
+            <Button onClick={handleCreateComment}>Añadir comentario</Button>
+          </Box>
+      
           {vynilRates.map((rate) => (
-            <div key={rate._id} className="comment">
-                <h3>{rate.user}</h3>
-                <h4>{rate.score}</h4>
-                <h4>{rate.comment}</h4>
-            </div>
+            <Box
+              p={5}
+              borderWidth="1px"
+              borderRadius="10px"
+              borderColor="gray.300"
+              mt={5}
+              key={rate._id}
+            >
+              <Text fontWeight="bold">{rate.user}</Text>
+              <Text fontSize="sm" color="gray.500">
+                {rate.score}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {rate.comment}
+              </Text>
+            </Box>
           ))}
-        </div>
-        </main>
-    )
+        </Box>
+      );
+      
 }
 
 export default vynilInfo
