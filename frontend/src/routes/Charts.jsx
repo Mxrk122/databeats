@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
+import { Box, Flex, Button, Image, Text } from '@chakra-ui/react';
 
 const ChartPage  = () => {
 
@@ -11,33 +12,40 @@ const ChartPage  = () => {
     ]
 
     return (
-        <main>
-        <Link to="/vynils">
-            <img
-            />
-        </Link>
-        <div className='charts-container'>
-            {charts.map((chart, index) => (
-            <div
-                key={chart.id}
-                style={{
-                background: "#FFFFFF",
-                border: "none",
-                borderRadius: "2px",
-                boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)",
-            }}
-            >
-            <iframe
-                width="640"
-                height="480"
-                src={`https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=${chart.id}&maxDataAge=3600&theme=light&autoRefresh=true`}
-            />
-            </div>
-        ))}
-        </div>
-    </main>
-    )
-}
+        <Box>
+          <Flex p={4} bg="#ffca38" align="center">
+            <Link to="/vynils">
+              <Button>Volver</Button>
+            </Link>
+            <Text ml={2} color="black" fontWeight={"bold"}>
+              Charts
+            </Text>
+          </Flex>
+          <Box p={4}>
+            <Box className='charts-container'>
+              {charts.map((chart, index) => (
+                <Box
+                  key={chart.id}
+                  bg="white"
+                  p={4}
+                  shadow="lg"
+                  borderRadius="lg"
+                  mb={4}
+                >
+                  <iframe
+                    width="100%"
+                    height="480"
+                    src={`https://charts.mongodb.com/charts-project-0-dfebe/embed/charts?id=${chart.id}&maxDataAge=3600&theme=light&autoRefresh=true`}
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+      );
+};
+    
+
 
 export default ChartPage
 

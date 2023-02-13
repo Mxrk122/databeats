@@ -151,7 +151,7 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
             textAlign='center'
             mb='5'
             >
-                ¡Bienvenido a Databeats! 
+                Catálogo 
             </Heading>
         <HStack
           w='100%'
