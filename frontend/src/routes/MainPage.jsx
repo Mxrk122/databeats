@@ -68,8 +68,8 @@ const MainPage = ({ viewVinil, setAggregation }) => {
 
     return (
         <Box as= 'main'
-        h="100vh" 
-        w="100vw"
+            w='100%'
+            h='100%'
 
         
         >
@@ -77,10 +77,11 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             align='center'
             justify='space-between'
             w='100%'
+            px='10'
+            py='5'
             borderBottomWidth='1px'
             borderBottomColor='gray.200'
             bgColor={"#ffca38"}
-            p={4}
         >
         {(user.admin) ? <Button as={Link} to="/create">Añadir un vinilo</Button> : null}
         
@@ -92,35 +93,7 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             py='5'
             bgColor={"#ffca38"}
         >
-            <Heading as='h6'>Filtrar por: </Heading>
-            <Radio
-                value="name"
-                onChange={handleOnCheckbox}
-                isChecked={filters.name}
-            >
-                Nombre
-            </Radio>
-            <Radio
-                value="artist"
-                onChange={handleOnCheckbox}
-                isChecked={filters.artist}
-            >
-                Artista
-            </Radio>
-            <Radio
-                value="year"
-                onChange={handleOnCheckbox}
-                isChecked={filters.year}
-            >
-                Año
-            </Radio>
-            <Radio
-                value="genre"
-                onChange={handleOnCheckbox}
-                isChecked={filters.genre}
-            >
-                Género
-            </Radio>
+            <Heading as='h4'>Filtrar por:</Heading>
         </Flex>
 
         <Button as={Link} to="/user">
@@ -146,7 +119,7 @@ const MainPage = ({ viewVinil, setAggregation }) => {
             textAlign='center'
             mb='5'
             >
-                Catálogo 
+                ¡Bienvenido a Databeats! 
             </Heading>
         <HStack
           w='100%'
@@ -155,26 +128,27 @@ const MainPage = ({ viewVinil, setAggregation }) => {
           flexWrap='wrap'
           justifyContent='center'
           alignItems='center'
-          spacing={6}
-          p={8}
-
+          m='5px'
         >
           {vynils.map((vinilo) => (
             <Box
-            key={vinilo._id}
-            onClick={() => handleChoose(vinilo)}
-            cursor='pointer'
-            borderWidth='1px'
-            borderRadius='lg'
-            borderColor='gray.200'
-            w='250px'
-            h='400px'
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            justifyContent='center'
-            boxShadow="md"
+              key={vinilo._id}
+            m='5px'
+              onClick={() => handleChoose(vinilo)}
+              cursor='pointer'
+              borderWidth='1px'
+              borderRadius='lg'
+              borderColor='gray.200'
+              w='250px'
+              h='400px'
+              display='flex'
+              flexDirection='column'
+              alignItems='center'
+              justifyContent='center'
+              boxShadow="md"
             bgColor = {'#FFFFFF'}
+            
+            
             >
               <Image
                 w='200px'
