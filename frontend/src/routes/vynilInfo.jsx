@@ -8,6 +8,8 @@ import { Box, Button, Flex, Input, Text, Image } from "@chakra-ui/react";
 
 const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
+    const navigate = useNavigate()
+
     const { user } = React.useContext(UserContext)
 
     //Creamos un array de tipo JSON con los datos de los vinilos
@@ -32,7 +34,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     }, [])
 
     useEffect(() => {
-        console.log(vynilRates)
+        
     }, [vynilRates])
 
     //Verificar si el vinilo esta en favoritos
@@ -93,7 +95,19 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     }
 
     const handleDelete = async () => {
-        console.log(selectedVynil.name, " borrado")
+        // Para eañadir es post
+        const vynil = selectedVynil
+
+        const response = await fetch('http://localhost:4000/vynils/' + selectedVynil._id, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(selectedVynil),
+        })
+        const data = await response.json()
+        console.log(data)
+        navigate('../vynils')
     }
 
     return (
@@ -113,7 +127,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
             <Link to="/editVynil">
               <Button>Editar</Button>
             </Link>
-            <Button ml={5}>
+            <Button ml={5} onClick={handleDelete}>
               Borrar
             </Button>
           </Flex>
@@ -136,6 +150,21 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
               </Text>
               <Text fontSize="sm" color="gray.500">
                 {vinilos[0].genre}
+              </Text>
+              <Text ffontWeight="bold" fontSize="lg">
+                Informacion especial
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Género: " + vinilos[0].information.genre}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Escala: " + vinilos[0].information.scale}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Publicado en: " + vinilos[0].information.origin}
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                {"Idioma: " + vinilos[0].information.language}
               </Text>
             </Box>
           </Box>
