@@ -74,14 +74,17 @@ const SectionPage = ({ aggregation, viewVynil }) => {
         <Heading as='h1'>¡Mis discos favoritos!</Heading>
         <HStack
           w='100%'
-          maxW='1100px'
+          maxW='auto'
           d='flex'
           flexWrap='wrap'
+          alignItems='center'
+          justifyContent='center'
+          spacing={6}
+          p={8}
         >
           {selectedVynils.map((vinilo) => (
             <Box
               key={vinilo._id}
-              m='10px'
               onClick={() => handleChoose(vinilo)}
               cursor='pointer'
               borderWidth='1px'

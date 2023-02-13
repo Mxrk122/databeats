@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContextProvider'
+import { Box, Text, Button, Image, Flex, Avatar } from "@chakra-ui/react";
 //Creamos un main donde se pondrá el array de los vinilos con un formato json
 
 
@@ -23,26 +24,42 @@ const UserInfo = () => {
     }, [])
 
 
-    return (
-        <main>
-        <navigator>
-            <Link to="/vynils"><button>Volver</button></Link>
-        </navigator>
-        <div className="user-info-container">
-            {(user.admin) ? <Link to="/editVynil"><button>Editar</button></Link> : null}
-            <div className="user-info">
-                <div>
-                    <h1>Nombre de usuario: {user.username}</h1>
-                    <h2>Nombre: {user.firstname}</h2>
-                    <h2>Apellidos: {user.lastname}</h2>
-                </div>
-            </div>
-        </div>
-        <div className='button-close-session'>
-            <button>Cerrar sesión</button>
-        </div>
-        </main>
-    )
+
+
+return (
+  <Flex direction="column" align="center" justify="center">
+    <Box d="flex" justifyContent="space-between" alignItems="center" mb={5} p={4}>
+      <Link to="/vynils">
+        <Button>Volver</Button>
+      </Link>
+      {user.admin ? (
+        <Link to="/editVynil">
+          <Button>Editar</Button>
+        </Link>
+      ) : null}
+    </Box>
+    <Flex
+      direction="column"
+      align="center"
+      justify="center"
+      mb={5}
+      p={5}
+      borderWidth="1px"
+      borderRadius="md"
+      boxShadow="md"
+      width="500px"
+    >
+      <Box align="center">
+        <Avatar name="user" size="350px" mb={5} />
+        <Text fontSize="xl">Nombre de usuario: {user.username}</Text>
+        <Text fontSize="lg">Nombre: {user.firstname}</Text>
+        <Text fontSize="lg">Apellidos: {user.lastname}</Text>
+      </Box>
+    </Flex>
+    <Button>Cerrar sesión</Button>
+  </Flex>
+);
+
 }
 
 export default UserInfo
