@@ -19,8 +19,9 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
 
     // variables para ver y añadir comentarios
     const [vynilRates, setVynilRates] = useState([])
-    const [actualRate, setActualRate] = useState([])
-    const [actualComment, setActualComment] = useState([])
+    const [vynilRate, setVynilRate] = useState(0)
+    const [actualRate, setActualRate] = useState("")
+    const [actualComment, setActualComment] = useState("")
 
     // actualizar comentarios
     const getVynilRates = async () => {
@@ -29,9 +30,27 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         setVynilRates(data)
     }
 
+    // Obtener calificacion del album actualizada
+    const getVynilRate = async () => {
+      const response = await fetch('http://localhost:4000/rates/avg/' + selectedVynil._id)
+      const data = await response.json()
+      setVynilRate(data[0]._id)
+  }
+
     useEffect(() => {
+        
         getVynilRates()
+        getVynilRate()
     }, [])
+
+    // controlar la calificacion
+    useEffect(() => {
+      if(actualRate < 0){
+        setActualRate(0)
+      } else if (actualRate > 100){
+        setActualRate(100)
+      }
+    }, [actualRate])
 
     useEffect(() => {
         
@@ -90,8 +109,8 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         })
         const data = await response.json()
         getVynilRates()
-        console.log(data)
         getVynilRates()
+        getVynilRate()
     }
 
     const handleDelete = async () => {
@@ -167,6 +186,13 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
                 {"Idioma: " + vinilos[0].information.language}
               </Text>
             </Box>
+
+            <Box ml={10}>
+                <Text fontWeight="bold" fontSize="50px">
+                  {"Calificacion promedio: " + vynilRate}
+                </Text>
+            </Box>
+
           </Box>
           
           <Box p={4}>
@@ -181,6 +207,9 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
               type="number"
               id="rate"
               placeholder="Calificacion sobre 100"
+              min="1"
+              max="100"
+              value={actualRate}
               onChange={(event) => setActualRate(event.target.value)}
               mb={5}
             />

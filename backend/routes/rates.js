@@ -22,6 +22,21 @@ router.get('/:vynil_id', async (req, res) => {
   } 
 })
 
+// agregacion para obtener el puntaje
+router.get('/avg/:vynil_id', async (req, res) => {
+  try {
+    Rate.aggregate([ {$match: {vynil: {$eq: req.params.vynil_id}}},
+    {$group: {_id:"$vynil", avg: {$avg: "$score"}}},
+    {$project: {_id: "$avg"}}  ]).exec((err, results) => {
+      if (err) return console.error(err);
+      console.log(results);
+      res.send(results)
+    })
+  } catch (error) {
+    res.send({ message: error.message })
+  } 
+})
+
 router.post('/', async (req, res) => {
   // si es un comentario que ya realizo a un disco, actualizarlo
   const user_id = req.body.actualUser
