@@ -4,7 +4,16 @@ const vynilSchema = new mongoose.Schema({
   name: String,
   artist: String,
   year: Number,
-  img: String
+  img: String,
+  information: {
+    genre: String,
+    scale: {
+      type: String,
+      default: null
+    },
+    origin: String,
+    language: String
+  }
 })
 
 module.exports = mongoose.model('Vynil', vynilSchema)

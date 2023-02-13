@@ -1,24 +1,32 @@
 import React, { useState } from 'react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Link, useNavigate} from 'react-router-dom'
-import DynamicInputs from '../utilities/DynamicInputs'
 
 const Create = () => {
   const [name, SetName] = useState('')
   const [artist, setArtist] = useState('')
   const [year, setYear] = useState('')
   const [img, setImg] = useState('')
-  const [songs, setSongs] = useState('')
+  const [genre, setGenre] = useState('')
+  const [scale, setScale] = useState('')
+  const [origin, setOrigin] = useState('')
+  const [language, setLanguage] = useState('')
 
   const navigate = useNavigate()
 
   const handleCreate = async (event) => {
     event.preventDefault()
+
+    const information = {
+      genre, scale, origin, language
+    }
+
     const vynil = {
       name,
       artist,
       year,
       img,
+      information
     }
     // Para publicar es POST
     const response = await fetch('http://localhost:4000/vynils', {
@@ -67,18 +75,35 @@ const Create = () => {
             onChange={(event) => setYear(event.target.value)}
           />
           <input
-            type="Number"
-            id="songs"
-            placeholder="cantidad de canciones"
-            onChange={(event) => setSongs(event.target.value)}
-          />
-          <input
             type="text"
             id="img"
             placeholder="link de imagen del vinilo jeje"
             onChange={(event) => setImg(event.target.value)}
           />
-          <DynamicInputs count={songs}/>
+          <input
+            type="text"
+            id="genre"
+            placeholder="Genero del vinilo"
+            onChange={(event) => setGenre(event.target.value)}
+          />
+          <input
+            type="text"
+            id="scale"
+            placeholder="escala en la que el disco esta escrito mayormente"
+            onChange={(event) => setScale(event.target.value)}
+          />
+          <input
+            type="text"
+            id="origin"
+            placeholder="pais donde fue publicado"
+            onChange={(event) => setOrigin(event.target.value)}
+          />
+          <input
+            type="text"
+            id="language"
+            placeholder="lenguaje del disco"
+            onChange={(event) => setLanguage(event.target.value)}
+          />
         </div>
         <button onClick={handleCreate}>Crear vinilo</button>
       </div>

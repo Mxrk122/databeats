@@ -62,12 +62,14 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         // crear comentario
 
         const actualUser = user._id
+        const username = user.username
         const vynil = selectedVynil._id
         const score = actualRate
         const comment = actualComment
 
         const rate = {
             actualUser,
+            username,
             vynil,
             score,
             comment
@@ -86,6 +88,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         const data = await response.json()
         getVynilRates()
         console.log(data)
+        getVynilRates()
     }
 
     return (
@@ -155,7 +158,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
               mt={5}
               key={rate._id}
             >
-              <Text fontWeight="bold">{rate.user}</Text>
+              <Text fontWeight="bold">{rate.username}</Text>
               <Text fontSize="sm" color="gray.500">
                 {rate.score}
               </Text>
