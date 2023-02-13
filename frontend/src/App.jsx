@@ -8,6 +8,7 @@ import VinilInfo from './routes/vynilInfo'
 import VynilEdit from './routes/EditVynil'
 import UserInfo from './routes/UserInfo'
 import SectionPage from './routes/SectionPage'
+import Dashboard from './routes/Dashboard'
 
 const App = () => {
 
@@ -68,6 +69,7 @@ const App = () => {
     <Route path='/editVynil' element={<VynilEdit selectedVynil={selectedVynil} setSelectedVynil={setSelectedVynil} />} />
     <Route path='/user' element={<UserInfo />} />
     <Route path='/SectionPage' element={<SectionPage aggregation={aggregation} viewVynil={viewVynil} />} />
+    <Route path='/charts' element={<Dashboard charts={charts} />} />
   </Routes>)
 }
 

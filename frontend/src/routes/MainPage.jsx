@@ -8,14 +8,6 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
     //Creamos un array de tipo JSON con los datos de los vinilos
     const [vynils, setVynils] = useState([])
 
-    //Creamos el diccionario para la filtración de la información
-    const [filters, setFilters] = useState({
-        name: false,
-        artist: false,
-        year: false,
-        genre: false,
-    })
-
     const { user } = React.useContext(UserContext)
 
     // busqueda cuando cambia el filtro
@@ -37,13 +29,13 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
     const handleOnCheckbox = (e) => { 
         switch (e) {
             case 'name':
-                console.log("name")
+                setFilter("name")
                 break;
             case 'artist':
-                console.log("artist")
+                setFilter("artist")
                 break;
             case 'year':
-                console.log("year")
+                setFilter("year")
                 break;
             default:
                 break;

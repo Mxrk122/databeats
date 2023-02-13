@@ -34,7 +34,9 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
     const getVynilRate = async () => {
       const response = await fetch('http://localhost:4000/rates/avg/' + selectedVynil._id)
       const data = await response.json()
-      setVynilRate(data[0]._id)
+      if (data.length){
+        setVynilRate(data[0]._id)
+      }
   }
 
     useEffect(() => {

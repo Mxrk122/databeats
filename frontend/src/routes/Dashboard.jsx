@@ -1,5 +1,5 @@
 import React from "react";
-import ChartsContainer from "./ChartsContainer";
+import ChartsContainer from "./Charts";
 import { Box, Button, Heading } from "@chakra-ui/react";
 
 

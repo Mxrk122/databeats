@@ -19,7 +19,24 @@ router.get('/:filter', async (req, res) => {
         res.json(sortedVynils)
       })
 
+    } else if (req.params.filter === "artist"){
+      Vynil.aggregate([
+        { $sort: { artist: 1 } }
+      ])
+      .exec(function (err, vynils) {
+        const sortedVynils = vynils
+        res.json(sortedVynils)
+      })
+    } else if (req.params.filter === "year"){
+      Vynil.aggregate([
+        { $sort: { year: 1 } }
+      ])
+      .exec(function (err, vynils) {
+        const sortedVynils = vynils
+        res.json(sortedVynils)
+      })
     }
+
   } catch (error) {
     res.send({ message: error.message })
   }

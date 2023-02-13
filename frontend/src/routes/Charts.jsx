@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from "react";
 import { Box, Stack, Spinner } from "@chakra-ui/react";
-import { ChartsApi } from "@mongodb-js/charts";
+import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
 
 const initCharts = (charts, setLoading, setError) => {
-  const chartsApi = new ChartsApi({
+  const chartsApi = new ChartsEmbedSDK({
     baseUrl: "https://charts.mongodb.com/charts-project-0-dfebe"
   });
 
