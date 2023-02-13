@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DataBeatsLogo from '../assets/images/DataBeatsLogo.png'
 import { Link, useNavigate} from 'react-router-dom'
+import { Box, FormControl, FormLabel, Input, Button, Flex, Image, Text } from '@chakra-ui/react'
 
 const Create = () => {
   const [name, SetName] = useState('')
@@ -50,10 +51,10 @@ const Create = () => {
   }
 
   return (
-    <main>
-      <div className='button-back'>
+    <Box as='main'>
+      <Flex className='button-back'>
         <Link to="/vynils"><button>Volver</button></Link>
-      </div>
+      </Flex>
       <div className="create-vinil-container">
         <div className="create-vinil-form">
           <input
@@ -107,7 +108,7 @@ const Create = () => {
         </div>
         <button onClick={handleCreate}>Crear vinilo</button>
       </div>
-    </main>
+    </Box>
   )
 }
 

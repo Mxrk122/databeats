@@ -141,8 +141,14 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         <Link to="/vynils">
           <Button>Volver</Button>
         </Link>
-        <Box display="flex" justifyContent="center">
-            <Image src={DataBeatsLogo} alt="Data Beats Logo" width="40px" height="40px"/>
+        <Box display="flex" justifyContent="center"
+        >
+            <Image 
+            src={DataBeatsLogo} 
+            alt="DataBeatsLogo"
+            h="50px"
+            w="50px"
+            />
         </Box>
         {user.admin && (
           <Flex>
