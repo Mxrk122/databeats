@@ -43,7 +43,7 @@ return (
     >
       <Box align="center">
         <Avatar name="user" size="350px" mb={5} />
-        <Text fontSize="xl">Nombre de usuario: {user.information.username}</Text>
+        <Text fontSize="xl">Nombre de usuario: {user.username}</Text>
         <Text fontSize="lg">Nombre: {user.information.firstName}</Text>
         <Text fontSize="lg">Apellidos: {user.information.lastName}</Text>
       </Box>
