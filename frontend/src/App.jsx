@@ -46,6 +46,12 @@ const App = () => {
     setLikedVynils(favorites)
   }
 
+  const charts = [
+    { chartId: "5e902d25f3b7c90024c52a82" },
+    { chartId: "5e902d25f3b7c90024c52a83" },
+    { chartId: "5e902d25f3b7c90024c52a84" }
+];
+
    // hacer la busqueda d evinilos al entrar
   useEffect(() => {
     setFilter("nothing")
