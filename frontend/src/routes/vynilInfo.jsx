@@ -99,7 +99,7 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         <Box bgColor={"#ffca38"}>
       <Flex justify="space-between" p={4}>
         <Link to="/vynils">
-          <Button variant="outline">Volver</Button>
+          <Button>Volver</Button>
         </Link>
         <Box display="flex" justifyContent="center">
             <Image src={DataBeatsLogo} alt="Data Beats Logo" width="40px" height="40px"/>
@@ -107,9 +107,9 @@ const vynilInfo = ({selectedVynil, isLiked, setLikedVynils, rates}) => {
         {user.admin && (
           <Flex>
             <Link to="/editVynil">
-              <Button variant="outline">Editar</Button>
+              <Button>Editar</Button>
             </Link>
-            <Button variant="outline" ml={5}>
+            <Button ml={5}>
               Borrar
             </Button>
           </Flex>

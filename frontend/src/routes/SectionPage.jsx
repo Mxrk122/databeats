@@ -79,11 +79,12 @@ const SectionPage = ({ aggregation, viewVynil }) => {
           flexWrap='wrap'
           alignItems='center'
           justifyContent='center'
+          spacing={6}
+          p={8}
         >
           {selectedVynils.map((vinilo) => (
             <Box
               key={vinilo._id}
-              m='10px'
               onClick={() => handleChoose(vinilo)}
               cursor='pointer'
               borderWidth='1px'
