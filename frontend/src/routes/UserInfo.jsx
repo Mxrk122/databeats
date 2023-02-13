@@ -48,7 +48,7 @@ return (
         <Text fontSize="lg">Apellidos: {user.information.lastName}</Text>
       </Box>
     </Flex>
-    <Button onClick={() => handleSignOut}>Cerrar sesión</Button>
+    <Button onClick={handleSignOut}>Cerrar sesión</Button>
   </Flex>
 );
 
