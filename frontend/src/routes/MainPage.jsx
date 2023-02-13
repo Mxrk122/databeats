@@ -37,6 +37,12 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
             case 'year':
                 setFilter("year")
                 break;
+            case 'rating':
+                console.log("rating")
+                break;
+            case 'comment':
+                console.log("comment")
+                break;
             default:
                 break;
         }
@@ -73,7 +79,7 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
         <Flex
             align='center'
             justifyContent='space-between'
-            w='40%'
+            w='auto'
             px='8'
             py='5'
             bgColor={"#ffca38"}
@@ -107,7 +113,6 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
                 >Artista</Button>
 
                 <Button 
-
                 d='flex'
                 alignItems='center'
                 justifyContent='center'
@@ -115,6 +120,24 @@ const MainPage = ({ viewVinil, setAggregation, filter, setFilter }) => {
                 bgColor={"#ffca38"}
                 onClick={() => handleOnCheckbox("year")}
                 >Año</Button>
+
+                <Button 
+                d='flex'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='row'
+                bgColor={"#ffca38"}
+                onClick={() => handleOnCheckbox("rating")}
+                >Mejor rating</Button>
+
+                <Button 
+                d='flex'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='row'
+                bgColor={"#ffca38"}
+                onClick={() => handleOnCheckbox("comment")}
+                >Más comentados</Button>
             </Box>
             
         </Flex>
