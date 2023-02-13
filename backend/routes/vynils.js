@@ -4,10 +4,22 @@ const Vynil = require('../models/vynil')
 const User = require('../models/user')
 const oI = require('mongoose').Types.ObjectId;
 
-router.get('/', async (req, res) => {
+router.get('/:filter', async (req, res) => {
   try {
-    const vynils = await Vynil.find()
-    res.json(vynils)
+    if (req.params.filter === "nothing"){
+      const vynils = await Vynil.find()
+      res.json(vynils)
+
+    } else if (req.params.filter === "name"){
+      Vynil.aggregate([
+        { $sort: { name: 1 } }
+      ])
+      .exec(function (err, vynils) {
+        const sortedVynils = vynils
+        res.json(sortedVynils)
+      })
+
+    }
   } catch (error) {
     res.send({ message: error.message })
   }
